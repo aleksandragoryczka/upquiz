@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-UpquizApplication<upquiz>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "up.quiz.upquiz.UpquizApplication",
+            "projectName": "upquiz",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

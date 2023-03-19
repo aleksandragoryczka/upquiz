@@ -1,0 +1,32 @@
+<div class = "container">
+    <div class="register-panel">
+        <img src="../../../assets/images/questionmarkicon.svg">
+        <h1>Register</h1>
+        <mat-form-field appearance="fill">
+            <mat-label>Name</mat-label>
+            <input matInput>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Surname</mat-label>
+            <input matInput>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Enter your email</mat-label>
+            <input matInput placeholder="dummy@mail.com" [formControl]="email" required>
+            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Password</mat-label>
+            <input matInput>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Repeat password</mat-label>
+            <input matInput>
+        </mat-form-field>
+        <button mat-raised-button>Register</button>
+    </div>
+    <div class="question-box">
+        <img mat-card-image src="../../../assets/images/questionbox.svg">
+    </div>
+</div>
+  
