@@ -1,12 +1,14 @@
-mat-toolbar{
+mat-toolbar {
   background: transparent;
   padding: 30px;
+
+  z-index: 9999;
 }
 
 .example-spacer {
-    flex: auto;
+  flex: auto;
 }
 
-button{
+button {
   font-size: 22px;
 }

@@ -3,7 +3,12 @@
 @import 'bootstrap/dist/css/bootstrap-reboot.min.css';
 
 body{
-    background-color: #E1D8F7;
+  background-image: url("./assets/images/questionbox.svg"), url("./assets/images/backgroundgraphics.svg");
+  background-repeat: no-repeat, no-repeat;
+  background-attachment: scroll, fixed;
+  background-position: right 260px bottom, top right;
+  background-size: 40%, 60%;
+  background-color: #E1D8F7;
   }
 
 html, body { height: 100%; }

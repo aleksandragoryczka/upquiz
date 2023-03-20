@@ -1,0 +1,26 @@
+.student-view-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+
+  .author-panel-container {
+    width: 30%;
+    margin-right: 25px;
+  }
+
+  .container {
+    button {
+      background-color: #552594;
+      color: #ffffff;
+      margin-bottom: 11px;
+    }
+
+    .viewport {
+      height: 800px;
+    }
+
+    .example-item {
+      height: 180px;
+    }
+  }
+}

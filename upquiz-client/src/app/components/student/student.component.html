@@ -1,0 +1,15 @@
+<div class ="student-view-container">
+    <div class="author-panel-container">
+        <app-authorview></app-authorview>
+    </div>
+
+    <div class="container">
+        <button mat-raised-button>Submit answers</button>
+        <cdk-virtual-scroll-viewport appendOnly itemSize="50" class="viewport">
+            <div *cdkVirtualFor="let question of questions" class="example-item">
+                <app-question></app-question>
+            </div>
+        </cdk-virtual-scroll-viewport>
+    </div>
+</div>
+
