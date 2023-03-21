@@ -1,0 +1,13 @@
+<div class="teacher-view-container">
+    <div class="teacher-panel-container">
+        <app-teacherview></app-teacherview>
+    </div>
+    <div class="container">
+        <button mat-raised-button>Create new</button>      
+        <cdk-virtual-scroll-viewport appendOnly itemSize="50" class="viewport">
+            <div *cdkVirtualFor="let quiz of quizzes" class="example-item">
+                <app-quiz></app-quiz>
+            </div>
+        </cdk-virtual-scroll-viewport>
+    </div>
+</div>

@@ -1,0 +1,34 @@
+.container {
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #d7c8f3;
+  border: 3px solid #47126b;
+  box-shadow: 12px 12px 4px rgba(0, 0, 0, 0.2);
+
+  img {
+    margin: 15px 0 15px 0;
+  }
+
+  .join-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    mat-form-field {
+      padding-top: 6px;
+      width: 150%;
+    }
+
+    button {
+      width: 150%;
+      height: 65px;
+      background-color: #552594;
+      color: #ffffff;
+      font-size: 24px;
+    }
+  }
+}

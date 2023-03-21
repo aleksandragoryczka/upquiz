@@ -22,9 +22,14 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { StudentComponent } from './components/student/student.component';
 import { QuestionComponent } from './components/question/question.component';
-import { ResultComponent } from './components/result/result.component';
+import { PointsComponent } from './components/points/points.component';
 import { JoinComponent } from './components/join/join.component';
 import { TeacherviewComponent } from './components/teacherview/teacherview.component';
+import { PinComponent } from './components/pin/pin.component';
+import { TeacherComponent } from './components/teacher/teacher.component';
+import { QuizComponent } from './components/quiz/quiz.component';
+import { ResultsComponent } from './components/results/results.component';
+import { ResultComponent } from './components/result/result.component';
 
 @NgModule({
   declarations: [
@@ -37,9 +42,14 @@ import { TeacherviewComponent } from './components/teacherview/teacherview.compo
     AuthorviewComponent,
     StudentComponent,
     QuestionComponent,
-    ResultComponent,
+    PointsComponent,
     JoinComponent,
     TeacherviewComponent,
+    PinComponent,
+    TeacherComponent,
+    QuizComponent,
+    ResultsComponent,
+    ResultComponent,
   ],
   imports: [
     BrowserModule,

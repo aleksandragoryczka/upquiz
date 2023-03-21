@@ -1,1 +1,16 @@
-<p>join works!</p>
+<div class="container">
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+    <img src="../../../assets/images/questionmarkicon.svg">
+    <div class="join-container">
+        <mat-form-field appearance="fill">
+            <mat-label>Your name</mat-label>
+            <input matInput>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Your surname</mat-label>
+            <input matInput>
+        </mat-form-field>
+        <button mat-raised-button routerLink="student">Join</button>
+    </div>
+</div>
+

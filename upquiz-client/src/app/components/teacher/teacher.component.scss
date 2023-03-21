@@ -1,0 +1,27 @@
+.teacher-view-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+
+  .teacher-panel-container {
+    width: 30%;
+    margin-right: 25px;
+  }
+
+  .container {
+    .viewport {
+      height: 800px;
+    }
+
+    .example-item {
+      height: 180px;
+      margin-bottom: 26px;
+    }
+
+    button {
+      background-color: #552594;
+      color: #ffffff;
+      margin-bottom: 11px;
+    }
+  }
+}

@@ -1,0 +1,14 @@
+.points-container {
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #d7c8f3;
+  border: 3px solid #47126b;
+  box-shadow: 12px 12px 4px rgba(0, 0, 0, 0.2);
+
+  * {
+    padding: 8px 0 8px 0;
+  }
+}
