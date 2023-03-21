@@ -1,4 +1,4 @@
-.results-view-container {
+.quiz-details-view-container {
   display: flex;
   flex-direction: row;
   justify-content: right;
@@ -11,6 +11,13 @@
   .container {
     .viewport {
       height: 600px;
+    }
+
+    button {
+      background-color: #552594;
+      color: #ffffff;
+      margin-bottom: 11px;
+      margin-right: 20px;
     }
   }
 }

@@ -9,11 +9,12 @@ import { StudentComponent } from './components/student/student.component';
 import { QuestionComponent } from './components/question/question.component';
 import { PointsComponent } from './components/points/points.component';
 import { JoinComponent } from './components/join/join.component';
-import { TeacherviewComponent } from './components/teacherview/teacherview.component';
+import { TeacherViewComponent } from './components/teacher-view/teacher-view.component';
 import { QuizComponent } from './components/quiz/quiz.component';
 import { TeacherComponent } from './components/teacher/teacher.component';
-import { ResultsComponent } from './components/results/results.component';
 import { ResultComponent } from './components/result/result.component';
+import { ResultsComponent } from './components/results/results.component';
+import { QuizDetailsComponent } from './components/quiz-details/quiz-details.component';
 
 const routes: Routes = [
   { path: '', component: HomepageComponent },
@@ -22,8 +23,8 @@ const routes: Routes = [
   { path: 'start', component: StartComponent },
   { path: 'student', component: StudentComponent },
   { path: 'teacher', component: TeacherComponent },
-  { path: 'test3', component: ResultComponent },
   { path: 'results', component: ResultsComponent },
+  { path: 'quiz-details', component: QuizDetailsComponent },
 ];
 
 @NgModule({

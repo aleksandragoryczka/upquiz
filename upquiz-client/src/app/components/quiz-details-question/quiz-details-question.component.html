@@ -1,0 +1,39 @@
+<div class="card-container">
+    <div class="card mb-4">
+        <div class="card-menu">
+            <button mat-button><mat-icon>restore_from_trash</mat-icon>Delete</button>
+            <button mat-button><mat-icon>edit</mat-icon>Edit</button>
+        </div>
+        <div class="card-body">
+            <p>Philology is the</p>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" [checked]="currentlyChecked === check_box_type.A" 
+                (click)="selectCheckBox(check_box_type.A)" name="q1" id="q1_r1" value="r1">
+                <label class="form-check-label" for="q1_r1">
+                    study of bones
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" [checked]="currentlyChecked === check_box_type.B" 
+                (click)="selectCheckBox(check_box_type.B)" name="q1" id="q1_r2" value="r2">
+                <label class="form-check-label" for="q1_r2">
+                    study of muscles
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" [checked]="currentlyChecked === check_box_type.C" 
+                (click)="selectCheckBox(check_box_type.C)" name="q1" id="q1_r3" value="r3">
+                <label class="form-check-label" for="q1_r3">
+                    study of architecture
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" [checked]="currentlyChecked === check_box_type.D" 
+                (click)="selectCheckBox(check_box_type.D)" name="q1" id="q1_r4" value="r4">
+                <label class="form-check-label" for="q1_r4">
+                    study of architecture
+                </label>
+        </div>
+                
+    </div>
+</div>
