@@ -2,6 +2,7 @@ package up.quiz.upquiz.controllers;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -9,10 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.websocket.server.PathParam;
 import up.quiz.upquiz.models.User;
 
 @RestController
-@RequestMapping
+@RequestMapping("/api/user")
 public class UserController {
 
     @PostMapping()
@@ -20,18 +22,18 @@ public class UserController {
         return user;
     }
 
-    @GetMapping()
-    User getUserById(@RequestParam long idUser) {
+    @GetMapping("/{idUser}")
+    User getUserById(@PathVariable long idUser) {
         return null;
     }
 
-    @PutMapping()
-    User updateUserById(@RequestBody User user, @RequestParam long idUser) {
+    @PutMapping("/{idUser}")
+    User updateUserById(@RequestBody User user, @PathVariable long idUser) {
         return user;
     }
 
-    @DeleteMapping()
-    void deleteUser(@RequestParam long idUser) {
+    @DeleteMapping("/{idUser}")
+    void deleteUser(@PathVariable long idUser) {
         return;
     }
 
