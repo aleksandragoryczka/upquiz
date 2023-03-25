@@ -1,8 +1,11 @@
 mat-toolbar {
   background: transparent;
   padding: 30px;
-
   z-index: 9999;
+}
+
+#logo {
+  cursor: pointer;
 }
 
 .example-spacer {

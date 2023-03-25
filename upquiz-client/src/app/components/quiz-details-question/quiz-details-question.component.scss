@@ -1,7 +1,7 @@
+@import "../../../variables.scss";
+
 .card {
-  display: flex;
-  flex-direction: row-reverse;
-  background: #f5ecfe;
+  background: $light-pink;
   border: 2px solid #000000;
   border-radius: 0;
 }

@@ -1,23 +1,19 @@
-.quiz-details-view-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: right;
+@import "../../../variables.scss";
 
-  .teacher-panel-container {
-    width: 30%;
-    margin-right: 25px;
+.teacher-panel-container {
+  width: 30%;
+  margin-right: 25px;
+}
+
+.container {
+  .viewport {
+    height: 400px;
   }
 
-  .container {
-    .viewport {
-      height: 600px;
-    }
-
-    button {
-      background-color: #552594;
-      color: #ffffff;
-      margin-bottom: 11px;
-      margin-right: 20px;
-    }
+  button {
+    background-color: $button-backgorund-color;
+    color: #ffffff;
+    margin-bottom: 11px;
+    margin-right: 20px;
   }
 }

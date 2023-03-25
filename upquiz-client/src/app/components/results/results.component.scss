@@ -1,16 +1,10 @@
-.results-view-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: right;
+.teacher-panel-container {
+  width: 30%;
+  margin-right: 25px;
+}
 
-  .teacher-panel-container {
-    width: 30%;
-    margin-right: 25px;
-  }
-
-  .container {
-    .viewport {
-      height: 600px;
-    }
+.container {
+  .viewport {
+    height: 400px;
   }
 }

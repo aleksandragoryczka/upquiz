@@ -1,21 +1,27 @@
+@import "../../../variables.scss";
+
 .pin-container {
   height: 300px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background: #d7c8f3;
+  background: $light-purple-background;
   border: 3px solid #47126b;
   box-shadow: 12px 12px 4px rgba(0, 0, 0, 0.2);
 
   * {
     padding: 8px 0 8px 0;
   }
-  .modal-body {
-    button {
-      font-size: 30px;
-      width: 180px;
-      height: 60px;
-    }
+
+  .modal-header {
+    border: none;
+  }
+
+  .btn-close {
+    margin-top: 15px;
+    --bs-btn-close-focus-shadow: none;
+  }
+
+  .modal-body > button {
+    font-size: 30px;
+    width: 180px;
+    height: 60px;
   }
 }

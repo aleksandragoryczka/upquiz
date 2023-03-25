@@ -1,15 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
-@import 'bootstrap/dist/css/bootstrap.min.css';
-@import 'bootstrap/dist/css/bootstrap-reboot.min.css';
+@import "bootstrap/dist/css/bootstrap.min.css";
+@import "bootstrap/dist/css/bootstrap-reboot.min.css";
+@import "variables";
 
-body{
-  background-image: url("./assets/images/questionbox.svg"), url("./assets/images/backgroundgraphics.svg");
+body {
+  background-image: url("./assets/images/questionbox.svg"),
+    url("./assets/images/backgroundgraphics.svg");
   background-repeat: no-repeat, no-repeat;
   background-attachment: scroll, fixed;
   background-position: right 260px bottom, top right;
   background-size: 40%, 60%;
-  background-color: #E1D8F7;
-  }
+  background-color: #e1d8f7;
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}

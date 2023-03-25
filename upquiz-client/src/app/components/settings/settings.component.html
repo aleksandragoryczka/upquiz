@@ -1,0 +1,29 @@
+<div class="settings d-flex flex-row justify-content-right">
+    <div class="teacher-panel-container">
+        <app-TeacherView></app-TeacherView>
+    </div>
+    <div class="settings-container d-flex flex-column justify-content-flex-start align-items-center">
+        <img src="../../../assets/images/questionmarkicon.svg">
+        <mat-form-field appearance="fill">
+            <mat-label>New name</mat-label>
+            <input matInput>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>New surname</mat-label>
+            <input matInput>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Old password</mat-label>
+            <input matInput>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>New password</mat-label>
+            <input matInput>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Repeat new password</mat-label>
+            <input matInput>
+        </mat-form-field>
+        <button mat-raised-button routerLink="/teacher">Save</button>
+    </div>
+</div>

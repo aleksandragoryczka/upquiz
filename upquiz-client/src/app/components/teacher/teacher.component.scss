@@ -1,27 +1,23 @@
-.teacher-view-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: right;
+@import "../../../variables.scss";
 
-  .teacher-panel-container {
-    width: 30%;
-    margin-right: 25px;
+.teacher-panel-container {
+  width: 30%;
+  margin-right: 25px;
+}
+
+.container {
+  .viewport {
+    height: 550px;
   }
 
-  .container {
-    .viewport {
-      height: 800px;
-    }
+  .example-item {
+    height: 180px;
+    margin-bottom: 26px;
+  }
 
-    .example-item {
-      height: 180px;
-      margin-bottom: 26px;
-    }
-
-    button {
-      background-color: #552594;
-      color: #ffffff;
-      margin-bottom: 11px;
-    }
+  button {
+    background-color: $button-backgorund-color;
+    color: #ffffff;
+    margin-bottom: 11px;
   }
 }

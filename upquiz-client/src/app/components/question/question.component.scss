@@ -1,16 +1,16 @@
-.card-container {
-  .card {
-    background: #f5ecfe;
-    border: 2px solid #000000;
-    border-radius: 0px;
+@import "../../../variables.scss";
 
-    p {
-      font-size: 16px;
-      font-weight: 500;
-    }
+.card {
+  background: $light-pink;
+  border: 2px solid #000000;
+  border-radius: 0px;
 
-    .form-check-label {
-      font-size: 13px;
-    }
+  p {
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  .form-check-label {
+    font-size: 13px;
   }
 }

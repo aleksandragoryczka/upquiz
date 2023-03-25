@@ -1,26 +1,20 @@
-.student-view-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: right;
+@import "../../../variables.scss";
 
-  .author-panel-container {
-    width: 30%;
-    margin-right: 25px;
-  }
+.author-panel-container {
+  width: 30%;
+  margin-right: 25px;
+}
 
-  .container {
-    button {
-      background-color: #552594;
-      color: #ffffff;
-      margin-bottom: 11px;
-    }
+.container > button {
+  background-color: $button-backgorund-color;
+  color: #ffffff;
+  margin-bottom: 11px;
+}
 
-    .viewport {
-      height: 800px;
-    }
+.viewport {
+  height: 580px;
+}
 
-    .example-item {
-      height: 180px;
-    }
-  }
+.example-item {
+  height: 180px;
 }

@@ -1,14 +1,21 @@
+@import "../../../variables.scss";
+
 .points-container {
   height: 250px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background: #d7c8f3;
+  background: $light-purple-background;
   border: 3px solid #47126b;
   box-shadow: 12px 12px 4px rgba(0, 0, 0, 0.2);
 
   * {
     padding: 8px 0 8px 0;
+  }
+
+  .modal-header {
+    border: none;
+  }
+
+  .btn-close {
+    margin-top: 15px;
+    --bs-btn-close-focus-shadow: none;
   }
 }

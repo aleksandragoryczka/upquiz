@@ -1,13 +1,10 @@
+@import "../../../variables.scss";
+
 .author-info-panel {
   width: 350px;
   height: 100%;
-
   left: 0;
-  background-color: #7251b5;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
+  background-color: $panel-background;
   color: #ffffff;
 
   #author-img {
@@ -25,8 +22,8 @@
     width: 88%;
 
     .quiz-card {
-      margin-top: 100px;
-      background: #815ac0;
+      margin-bottom: 10px;
+      background: $card-backgorund;
       border: 0.5px solid #e2dbea;
       box-shadow: 10px 6px 4px rgba(0, 0, 0, 0.25);
     }

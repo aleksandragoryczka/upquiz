@@ -1,26 +1,26 @@
 @import "../../../variables.scss";
 
-.container {
-  height: 400px;
+.settings {
+  height: 800px;
+}
+.settings-container {
+  margin-left: 150px;
+  width: 60%;
+  height: 70%;
   background: $light-purple-background;
-  border: 3px solid #47126b;
+  border: 2px solid #47126b;
   box-shadow: 12px 12px 4px rgba(0, 0, 0, 0.2);
 
-  .btn-close {
-    --bs-btn-close-focus-shadow: none;
-  }
-
   img {
-    margin: 15px 0 15px 0;
+    padding: 18px 0 18px 0;
   }
 
   mat-form-field {
-    padding-top: 6px;
-    width: 150%;
+    width: 60%;
   }
 
-  .join-container > button {
-    width: 150%;
+  button {
+    width: 60%;
     height: 65px;
     background-color: $button-backgorund-color;
     color: #ffffff;

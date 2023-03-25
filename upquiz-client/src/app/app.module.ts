@@ -34,6 +34,7 @@ import { QuizDetailsComponent } from './components/quiz-details/quiz-details.com
 import { QuizDetailsQuestionComponent } from './components/quiz-details-question/quiz-details-question.component';
 import { InPlaceEditorComponent } from '@syncfusion/ej2-angular-inplace-editor';
 import { ChangeEventArgs } from '@syncfusion/ej2-buttons';
+import { SettingsComponent } from './components/settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { ChangeEventArgs } from '@syncfusion/ej2-buttons';
     ResultComponent,
     QuizDetailsComponent,
     QuizDetailsQuestionComponent,
+    SettingsComponent,
   ],
   imports: [
     BrowserModule,

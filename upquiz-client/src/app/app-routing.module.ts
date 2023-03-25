@@ -15,6 +15,7 @@ import { TeacherComponent } from './components/teacher/teacher.component';
 import { ResultComponent } from './components/result/result.component';
 import { ResultsComponent } from './components/results/results.component';
 import { QuizDetailsComponent } from './components/quiz-details/quiz-details.component';
+import { SettingsComponent } from './components/settings/settings.component';
 
 const routes: Routes = [
   { path: '', component: HomepageComponent },
@@ -25,6 +26,7 @@ const routes: Routes = [
   { path: 'teacher', component: TeacherComponent },
   { path: 'results', component: ResultsComponent },
   { path: 'quiz-details', component: QuizDetailsComponent },
+  { path: 'settings', component: SettingsComponent },
 ];
 
 @NgModule({
