@@ -1,4 +1,4 @@
-package up.quiz.upquiz.controllers;
+package up.quiz.upquiz.controller;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,30 +11,22 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.websocket.server.PathParam;
-import up.quiz.upquiz.models.User;
+//import up.quiz.upquiz.model.User;
 
 @RestController
 @RequestMapping("/api/user")
 public class UserController {
-
-    @PostMapping()
-    User createUser(@RequestBody User user) {
-        return user;
-    }
-
-    @GetMapping("/{idUser}")
-    User getUserById(@PathVariable long idUser) {
-        return null;
-    }
-
-    @PutMapping("/{idUser}")
-    User updateUserById(@RequestBody User user, @PathVariable long idUser) {
-        return user;
-    }
-
-    @DeleteMapping("/{idUser}")
-    void deleteUser(@PathVariable long idUser) {
-        return;
-    }
+    /*
+     * @PostMapping() User createUser(@RequestBody User user) { return user; }
+     * 
+     * @GetMapping("/{idUser}") User getUserById(@PathVariable long idUser) { return
+     * null; }
+     * 
+     * @PutMapping("/{idUser}") User updateUserById(@RequestBody User
+     * user, @PathVariable long idUser) { return user; }
+     * 
+     * @DeleteMapping("/{idUser}") void deleteUser(@PathVariable long idUser) {
+     * return; }
+     */
 
 }
