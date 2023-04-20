@@ -4,6 +4,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 
 import jakarta.persistence.*;
 
@@ -12,22 +13,19 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "quizes")
-class Quiz {
+public class Quiz {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long idQuiz;
 
-    @Lob
-    @Column(name = "quizTitle", nullable = false)
+    @Column(name = "quizTitle", nullable = false, columnDefinition = "TEXT")
     private String quizTitle;
 
-    @Lob
     @Column(name = "quizDescription", nullable = false, columnDefinition = "TEXT")
     private String quizDescription;
 
-    @Lob
-    @Column(name = "quizIcon", nullable = true)
+    @Column(name = "quizIcon", nullable = true, columnDefinition = "BYTEA")
     private byte[] quizIcon;
 
     @Column(name = "PIN", nullable = true)
@@ -36,8 +34,8 @@ class Quiz {
     @Column(name = "sumOfPoints")
     private long sumOfPoints;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "id_user", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idUser")
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private User idUser;

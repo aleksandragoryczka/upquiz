@@ -12,7 +12,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "questions")
-class Question {
+public class Question {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -33,8 +33,8 @@ class Question {
     @Column(name = "dAnswer", columnDefinition = "TEXT")
     private String dAnswer;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "id_quiz", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idQuiz")
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private Quiz idQuiz;

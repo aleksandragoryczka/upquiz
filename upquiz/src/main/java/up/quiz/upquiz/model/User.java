@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "users")
-class User {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,8 +24,7 @@ class User {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @Lob
-    @Column(name = "photo", nullable = true)
+    @Column(name = "photo", nullable = true, columnDefinition = "BYTEA")
     private String photo;
 
     public User() {
