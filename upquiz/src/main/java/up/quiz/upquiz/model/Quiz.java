@@ -38,7 +38,7 @@ public class Quiz {
     @JoinColumn(name = "idUser")
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
-    private User idUser;
+    private User user;
 
     public Quiz() {
     }
