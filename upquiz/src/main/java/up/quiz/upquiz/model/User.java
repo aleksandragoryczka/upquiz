@@ -1,16 +1,13 @@
 package up.quiz.upquiz.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
 @Data
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -21,16 +18,16 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long idUser;
 
-    @Column(name = "firstName", columnDefinition = "TEXT")
+    @Column(name = "firstName", columnDefinition = "TEXT", nullable = true)
     private String firstName;
 
-    @Column(name = "surname", columnDefinition = "TEXT")
+    @Column(name = "surname", columnDefinition = "TEXT", nullable = true)
     private String surname;
 
-    @Column(name = "email", nullable = false, columnDefinition = "TEXT")
+    @Column(name = "email", columnDefinition = "TEXT", nullable = false, unique = true)
     private String email;
 
-    @Column(name = "password", nullable = false, columnDefinition = "TEXT")
+    @Column(name = "password", columnDefinition = "TEXT", nullable = false)
     private String password;
 
     @Column(name = "photo", nullable = true, columnDefinition = "BYTEA")

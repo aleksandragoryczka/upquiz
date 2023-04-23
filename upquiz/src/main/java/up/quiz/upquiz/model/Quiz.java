@@ -4,14 +4,16 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 
 import jakarta.persistence.*;
-
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "quizes")
 public class Quiz {
 
@@ -31,16 +33,13 @@ public class Quiz {
     @Column(name = "PIN", nullable = true)
     private int pin;
 
-    @Column(name = "sumOfPoints")
+    @Column(name = "sumOfPoints", nullable = true)
     private long sumOfPoints;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idUser")
+    @JoinColumn(name = "idUser", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private User user;
-
-    public Quiz() {
-    }
 
 }

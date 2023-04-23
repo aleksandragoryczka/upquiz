@@ -1,31 +1,15 @@
 package up.quiz.upquiz.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.hateoas.CollectionModel;
-import org.springframework.hateoas.EntityModel;
-import org.springframework.hateoas.IanaLinkRelations;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
+import org.springframework.web.bind.annotation.*;
 
-import java.nio.file.attribute.UserPrincipalNotFoundException;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import up.quiz.upquiz.exception.ResourceNotFoundException;
 import up.quiz.upquiz.model.Quiz;
 import up.quiz.upquiz.model.User;
 import up.quiz.upquiz.repository.QuizRepository;
 import up.quiz.upquiz.repository.UserRepository;
-
-//import up.quiz.upquiz.model.Quiz;
 
 @RestController
 @RequestMapping("/api/{idUser}/quizzes")
@@ -68,7 +52,7 @@ public class QuizController {
         // newQuiz.setQuizIcon(newQuiz.getQuizIcon());
         // newQuiz.setSumOfPoints(newQuiz.getSumOfPoints());
         // newQuiz.setPin(0);
-        // newQuiz.setUser(user);
+        newQuiz.setUser(user);
         return quizRepository.save(newQuiz);
     }
 
