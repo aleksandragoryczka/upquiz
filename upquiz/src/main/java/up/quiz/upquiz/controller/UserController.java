@@ -32,14 +32,10 @@ public class UserController {
 
     @PutMapping("/{idUser}")
     public User updateUser(@PathVariable long idUser, @RequestBody User userRequest) {
-        User user = userRepository.findById(idUser)
-                .orElseThrow(() -> new ResourceNotFoundException("userRepository", "idUser", idUser));
-        user.setFirstName(userRequest.getFirstName());
-        user.setSurname(userRequest.getSurname());
-        user.setEmail(userRequest.getEmail());
-        user.setPassword(userRequest.getPassword());
-        user.setPhoto(userRequest.getPhoto());
-        return userRepository.save(user);
+        // User user = userRepository.findById(idUser)
+        // .orElseThrow(() -> new ResourceNotFoundException("userRepository", "idUser",
+        // idUser));
+        return userRepository.save(userRequest);
     }
 
     @DeleteMapping("/{idUser}")
