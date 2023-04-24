@@ -1,19 +1,19 @@
 package up.quiz.upquiz.model;
 
+import java.util.Optional;
+
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Data
-@Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
 @Table(name = "questions")
 public class Question {
 
@@ -24,16 +24,16 @@ public class Question {
     @Column(name = "question", nullable = false, columnDefinition = "TEXT")
     private String question;
 
-    @Column(name = "aAnswer", columnDefinition = "TEXT", nullable = false)
+    @Column(name = "aAnswer", nullable = false, columnDefinition = "TEXT")
     private String aAnswer;
 
-    @Column(name = "bAnswer", columnDefinition = "TEXT", nullable = false)
+    @Column(name = "bAnswer", nullable = false, columnDefinition = "TEXT")
     private String bAnswer;
 
-    @Column(name = "cAnswer", columnDefinition = "TEXT", nullable = false)
+    @Column(name = "cAnswer", nullable = false, columnDefinition = "TEXT")
     private String cAnswer;
 
-    @Column(name = "dAnswer", columnDefinition = "TEXT", nullable = false)
+    @Column(name = "dAnswer", nullable = false, columnDefinition = "TEXT")
     private String dAnswer;
 
     @ManyToOne(fetch = FetchType.LAZY)

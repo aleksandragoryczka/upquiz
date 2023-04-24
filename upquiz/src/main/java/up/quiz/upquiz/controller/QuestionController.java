@@ -1,9 +1,12 @@
 package up.quiz.upquiz.controller;
 
 import java.util.List;
+import java.util.Optional;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import jakarta.validation.Valid;
 import up.quiz.upquiz.exception.ResourceNotFoundException;
 import up.quiz.upquiz.model.Question;
 import up.quiz.upquiz.model.Quiz;
@@ -32,26 +35,31 @@ public class QuestionController {
 
     // Add new question to quiz by quiz id
     @PostMapping("")
-    public Question addQuestionToQuiz(@PathVariable long idQuiz, @RequestBody Question questionRequest) {
+    public Question addQuestionToQuiz(@PathVariable long idQuiz, @RequestBody Question newQuestion) {
         Quiz quiz = quizRepository.findById(idQuiz)
                 .orElseThrow(() -> new ResourceNotFoundException("quizRepository", "idQuiz", idQuiz));
-
-        questionRequest.setQuiz(quiz);
-        System.out.println(questionRequest.getAAnswer());
-        return questionRepository.save(questionRequest);
+        newQuestion.setQuiz(quiz);
+        return questionRepository.save(newQuestion);
     }
 
-    /*
-     * @PostMapping() Question createQuiz(@RequestBody Question question) { return
-     * question; }
-     * 
-     * @GetMapping("/{idQuestion}") Question getQuestionById(@PathVariable long
-     * idQuestion) { return null; }
-     * 
-     * @PutMapping("/{idQuestion}") Question updateQuestionById(@RequestBody
-     * Question question, @PathVariable long idQuestion) { return null; }
-     * 
-     * @DeleteMapping("/{idQuestion}") void deleteQuestionById(@PathVariable long
-     * idQuestion) { return; }
-     */
+    @PutMapping("/{idQuestion}")
+    public Question updateQuestionByIdQuestion(@PathVariable long idQuiz, @PathVariable long idQuestion,
+            @RequestBody Question questionUpdated) {
+        Question question = questionRepository.findById(idQuestion)
+                .orElseThrow(() -> new ResourceNotFoundException("questionRepository", "idQuestion", idQuestion));
+        question.setQuestion(questionUpdated.getQuestion());
+        question.setAAnswer(questionUpdated.getAAnswer());
+        question.setBAnswer(questionUpdated.getBAnswer());
+        question.setCAnswer(questionUpdated.getCAnswer());
+        question.setDAnswer(questionUpdated.getDAnswer());
+        return questionRepository.save(question);
+    }
+
+    @DeleteMapping("/{idQuestion}")
+    public ResponseEntity<?> deleteQuestionByIdQuestion(@PathVariable long idQuiz, @PathVariable long idQuestion) {
+        Question questionToBeDeleted = questionRepository.findById(idQuestion)
+                .orElseThrow(() -> new ResourceNotFoundException("questionRepository", "idQuestion", idQuestion));
+        questionRepository.delete(questionToBeDeleted);
+        return ResponseEntity.ok().build();
+    }
 }

@@ -34,11 +34,9 @@ public class QuizController {
 
     // Get detailes about specific quiz for a user
     @GetMapping("/{idQuiz}")
-    public Quiz getQuizByIdQUiz(@PathVariable long idUser, @PathVariable Long idQuiz) {
-        User user = userRepository.findById(idUser)
-                .orElseThrow(() -> new ResourceNotFoundException("userRepository", "idUser", idUser));
-        Quiz quiz = quizRepository.findByIdQuizAndUser(idQuiz, user)
-                .orElseThrow(() -> new ResourceNotFoundException("quizRepository", "idQUiz", idQuiz));
+    public Quiz getQuizByIdQuiz(@PathVariable long idUser, @PathVariable Long idQuiz) {
+        Quiz quiz = quizRepository.findById(idQuiz)
+                .orElseThrow(() -> new ResourceNotFoundException("quizRepository", "idQiz", idQuiz));
         return quiz;
     }
 
@@ -47,11 +45,6 @@ public class QuizController {
     public Quiz createQuizForUser(@PathVariable long idUser, @RequestBody Quiz newQuiz) {
         User user = userRepository.findById(idUser)
                 .orElseThrow(() -> new ResourceNotFoundException("userRepository", "idUser", idUser));
-        // newQuiz.setQuizTitle(newQuiz.getQuizTitle());
-        // newQuiz.setQuizDescription(newQuiz.getQuizDescription());
-        // newQuiz.setQuizIcon(newQuiz.getQuizIcon());
-        // newQuiz.setSumOfPoints(newQuiz.getSumOfPoints());
-        // newQuiz.setPin(0);
         newQuiz.setUser(user);
         return quizRepository.save(newQuiz);
     }

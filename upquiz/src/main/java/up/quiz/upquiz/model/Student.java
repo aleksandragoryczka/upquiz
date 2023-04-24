@@ -6,10 +6,14 @@ import org.hibernate.annotations.OnDeleteAction;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "students")
 public class Student {
 
@@ -28,11 +32,8 @@ public class Student {
     private long result;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idQuiz")
+    @JoinColumn(name = "idQuiz", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
-    private Quiz idQuiz;
-
-    public Student() {
-    }
+    private Quiz quiz;
 }
