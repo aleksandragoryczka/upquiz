@@ -55,9 +55,9 @@ public class QuizController {
             @RequestBody Quiz quizUpdated) {
         Quiz quiz = quizRepository.findById(idQuiz)
                 .orElseThrow(() -> new ResourceNotFoundException("quizRepository", "idQuiz", idQuiz));
-        quiz.setQuizTitle(quizUpdated.getQuizTitle());
-        quiz.setQuizDescription(quizUpdated.getQuizDescription());
-        quiz.setQuizIcon(quizUpdated.getQuizIcon());
+        quiz.setQuiztitle(quizUpdated.getQuiztitle());
+        quiz.setQuizdescription(quizUpdated.getQuizdescription());
+        quiz.setQuizicon(quizUpdated.getQuizicon());
         return quizRepository.save(quiz);
     }
 

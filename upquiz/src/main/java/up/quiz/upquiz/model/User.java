@@ -3,9 +3,7 @@ package up.quiz.upquiz.model;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Data
 @AllArgsConstructor
@@ -16,10 +14,10 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long idUser;
+    private long iduser;
 
-    @Column(name = "firstName", columnDefinition = "TEXT", nullable = true)
-    private String firstName;
+    @Column(name = "firstname", columnDefinition = "TEXT", nullable = true)
+    private String firstname;
 
     @Column(name = "surname", columnDefinition = "TEXT", nullable = true)
     private String surname;

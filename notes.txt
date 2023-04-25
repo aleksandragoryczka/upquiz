@@ -1,0 +1,32 @@
+@import "../../../variables.scss";
+
+.register-panel {
+  margin-left: 170px;
+  width: 500px;
+  height: 600px;
+  background: $light-purple-background;
+  border: 2px solid #47126b;
+  box-shadow: 12px 12px 4px rgba(0, 0, 0, 0.2);
+
+  img {
+    padding: 10px 0 10px 0;
+  }
+
+  h1 {
+    font-size: 34px;
+    padding-bottom: 8px;
+  }
+
+  mat-form-field {
+    width: 60%;
+  }
+
+  button {
+    width: 60%;
+    height: 65px;
+    margin-top: 8px;
+    background-color: $button-backgorund-color;
+    color: #ffffff;
+    font-size: 24px;
+  }
+}

@@ -2,13 +2,13 @@
     <img id="teacher-img" src="../../../assets/images/cat.jpg">
     <ul class="nav flex-column align-items-center">
         <li class="nav-item">
-            <h1>Name</h1>
+            <h1>{{currentUser.firstname}}</h1>
         </li>
         <li class="nav-item">
-            <p>e-mail</p>
+            <p>{{currentUser.email}}</p>
         </li>
         <li class="nav-item">
-            <a class="nav-link" routerLink="/settings">Manage your account</a>
+            <a class="nav-link" routerLink="/teacher/{{currentUser.iduser}}/settings">Manage your account</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" routerLink="">Log out</a>

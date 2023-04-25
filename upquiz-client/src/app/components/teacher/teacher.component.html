@@ -3,7 +3,7 @@
         <app-TeacherView></app-TeacherView>
     </div>
     <div class="container">
-        <button mat-raised-button>Create new</button>      
+        <button mat-raised-button routerLink="">Create new</button>      
         <cdk-virtual-scroll-viewport appendOnly itemSize="50" class="viewport">
             <div *cdkVirtualFor="let quiz of quizzes" class="example-item">
                 <app-quiz></app-quiz>

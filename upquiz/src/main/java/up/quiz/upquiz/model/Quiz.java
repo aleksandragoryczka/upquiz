@@ -19,25 +19,25 @@ public class Quiz {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long idQuiz;
+    private long idquiz;
 
-    @Column(name = "quizTitle", nullable = false, columnDefinition = "TEXT")
-    private String quizTitle;
+    @Column(name = "quiztitle", nullable = false, columnDefinition = "TEXT")
+    private String quiztitle;
 
-    @Column(name = "quizDescription", nullable = false, columnDefinition = "TEXT")
-    private String quizDescription;
+    @Column(name = "quizdescription", nullable = false, columnDefinition = "TEXT")
+    private String quizdescription;
 
-    @Column(name = "quizIcon", nullable = true, columnDefinition = "BYTEA")
-    private byte[] quizIcon;
+    @Column(name = "quizicon", nullable = true, columnDefinition = "BYTEA")
+    private byte[] quizicon;
 
-    @Column(name = "PIN", nullable = true)
+    @Column(name = "pin", nullable = true)
     private int pin;
 
-    @Column(name = "sumOfPoints", nullable = true)
-    private long sumOfPoints;
+    @Column(name = "sumofpoints", nullable = true)
+    private long sumofpoints;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idUser", nullable = false)
+    @JoinColumn(name = "iduser", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private User user;

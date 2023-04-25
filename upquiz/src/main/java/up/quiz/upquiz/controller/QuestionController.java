@@ -48,10 +48,10 @@ public class QuestionController {
         Question question = questionRepository.findById(idQuestion)
                 .orElseThrow(() -> new ResourceNotFoundException("questionRepository", "idQuestion", idQuestion));
         question.setQuestion(questionUpdated.getQuestion());
-        question.setAAnswer(questionUpdated.getAAnswer());
-        question.setBAnswer(questionUpdated.getBAnswer());
-        question.setCAnswer(questionUpdated.getCAnswer());
-        question.setDAnswer(questionUpdated.getDAnswer());
+        question.setAanswer(questionUpdated.getAanswer());
+        question.setBanswer(questionUpdated.getBanswer());
+        question.setCanswer(questionUpdated.getCanswer());
+        question.setDanswer(questionUpdated.getDanswer());
         return questionRepository.save(question);
     }
 

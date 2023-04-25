@@ -6,24 +6,49 @@
         <img src="../../../assets/images/questionmarkicon.svg">
         <mat-form-field appearance="fill">
             <mat-label>New name</mat-label>
-            <input matInput>
+            <input matInput
+            type="text"
+            class="form-control"
+            id="first_name"
+            required
+            [(ngModel)]="currentUser.firstname"
+            name="first_name">
         </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label>New surname</mat-label>
-            <input matInput>
+            <input matInput
+            type="text"          
+            class="form-control"
+            id="surname"
+            required
+            [(ngModel)]="currentUser.surname"
+            name="surname">
         </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label>Old password</mat-label>
-            <input matInput>
+            <input matInput
+            type="password"          
+            class="form-control"
+            id="password"
+            required
+            name="password">
         </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label>New password</mat-label>
-            <input matInput>
+            <input matInput
+            type="password"          
+            class="form-control"
+            id="password"
+            required
+            [(ngModel)]="currentUser.password"
+            name="password">
         </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label>Repeat new password</mat-label>
-            <input matInput>
+            <input matInput
+            type="password"      
+            required>
         </mat-form-field>
-        <button mat-raised-button routerLink="/teacher">Save</button>
+        <button mat-raised-button routerLink="/teacher/{{currentUser.iduser}}" (click)="updateUser()">Save</button>
     </div>
 </div>

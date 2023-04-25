@@ -35,6 +35,9 @@ import { QuizDetailsQuestionComponent } from './components/quiz-details-question
 import { InPlaceEditorComponent } from '@syncfusion/ej2-angular-inplace-editor';
 import { ChangeEventArgs } from '@syncfusion/ej2-buttons';
 import { SettingsComponent } from './components/settings/settings.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { NewquizComponent } from './components/newquiz/newquiz.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +61,7 @@ import { SettingsComponent } from './components/settings/settings.component';
     QuizDetailsComponent,
     QuizDetailsQuestionComponent,
     SettingsComponent,
+    NewquizComponent,
   ],
   imports: [
     BrowserModule,
@@ -73,6 +77,8 @@ import { SettingsComponent } from './components/settings/settings.component';
     MatCardModule,
     MatSidenavModule,
     ScrollingModule,
+    HttpClientModule,
+    FormsModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [],

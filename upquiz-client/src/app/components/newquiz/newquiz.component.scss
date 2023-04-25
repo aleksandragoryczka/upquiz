@@ -1,0 +1,19 @@
+@import "../../../variables.scss";
+
+.teacher-panel-container {
+  width: 30%;
+  margin-right: 25px;
+}
+
+.container {
+  .viewport {
+    height: 400px;
+  }
+
+  button {
+    background-color: $button-backgorund-color;
+    color: #ffffff;
+    margin-bottom: 11px;
+    margin-right: 20px;
+  }
+}

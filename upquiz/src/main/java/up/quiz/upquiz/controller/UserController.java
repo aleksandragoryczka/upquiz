@@ -8,6 +8,7 @@ import up.quiz.upquiz.model.User;
 import up.quiz.upquiz.repository.UserRepository;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/users")
 public class UserController {
 

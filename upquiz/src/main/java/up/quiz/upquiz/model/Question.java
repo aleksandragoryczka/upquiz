@@ -19,25 +19,25 @@ public class Question {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long idQuestion;
+    private long idquestion;
 
     @Column(name = "question", nullable = false, columnDefinition = "TEXT")
     private String question;
 
-    @Column(name = "aAnswer", nullable = false, columnDefinition = "TEXT")
-    private String aAnswer;
+    @Column(name = "aanswer", nullable = false, columnDefinition = "TEXT")
+    private String aanswer;
 
-    @Column(name = "bAnswer", nullable = false, columnDefinition = "TEXT")
-    private String bAnswer;
+    @Column(name = "banswer", nullable = false, columnDefinition = "TEXT")
+    private String banswer;
 
-    @Column(name = "cAnswer", nullable = false, columnDefinition = "TEXT")
-    private String cAnswer;
+    @Column(name = "canswer", nullable = false, columnDefinition = "TEXT")
+    private String canswer;
 
-    @Column(name = "dAnswer", nullable = false, columnDefinition = "TEXT")
-    private String dAnswer;
+    @Column(name = "danswer", nullable = false, columnDefinition = "TEXT")
+    private String danswer;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idQuiz", nullable = false)
+    @JoinColumn(name = "idquiz", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private Quiz quiz;

@@ -3,24 +3,51 @@
     <h1>Register</h1>
     <mat-form-field appearance="fill">
         <mat-label>Name</mat-label>
-        <input matInput>
+        <input matInput           
+          type="text"
+          class="form-control"
+          id="first_name"
+          required
+          [(ngModel)]="user.firstname"
+          name="first_name">
     </mat-form-field>
     <mat-form-field appearance="fill">
         <mat-label>Surname</mat-label>
-        <input matInput>
+        <input matInput
+          type="text"          
+          class="form-control"
+          id="surname"
+          required
+          [(ngModel)]="user.surname"
+          name="surname">
     </mat-form-field>
     <mat-form-field appearance="fill">
         <mat-label>Enter your email</mat-label>
-        <input matInput placeholder="dummy@mail.com" [formControl]="email" required>
-        <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+        <input matInput 
+          type="email"          
+          class="form-control"
+          id="email"
+          required
+          [(ngModel)]="user.email"
+          name="email"
+          placeholder="dummy@dummy.com">
+      <!--  <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error> -->
     </mat-form-field>
     <mat-form-field appearance="fill">
         <mat-label>Password</mat-label>
-        <input matInput>
+        <input matInput
+          type="password"          
+          class="form-control"
+          id="password"
+          required
+          [(ngModel)]="user.password"
+          name="pasword">
     </mat-form-field>
     <mat-form-field appearance="fill">
         <mat-label>Repeat password</mat-label>
-        <input matInput>
+        <input matInput
+          type="password"          
+          required>
     </mat-form-field>
-    <button mat-raised-button>Register</button>
+    <button mat-raised-button (click)="createUser()">Register</button>
 </div>

@@ -16,6 +16,7 @@ import { ResultComponent } from './components/result/result.component';
 import { ResultsComponent } from './components/results/results.component';
 import { QuizDetailsComponent } from './components/quiz-details/quiz-details.component';
 import { SettingsComponent } from './components/settings/settings.component';
+import { NewquizComponent } from './components/newquiz/newquiz.component';
 
 const routes: Routes = [
   { path: '', component: HomepageComponent },
@@ -23,10 +24,11 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'start', component: StartComponent },
   { path: 'student', component: StudentComponent },
-  { path: 'teacher', component: TeacherComponent },
+  { path: 'teacher/:id', component: TeacherComponent },
+  { path: 'teacher/:id/settings', component: SettingsComponent },
   { path: 'results', component: ResultsComponent },
-  { path: 'quiz-details', component: QuizDetailsComponent },
-  { path: 'settings', component: SettingsComponent },
+  { path: 'teacher/:id/quiz-details', component: QuizDetailsComponent },
+  { path: 'teacher/:id/quizzes', component: NewquizComponent },
 ];
 
 @NgModule({
