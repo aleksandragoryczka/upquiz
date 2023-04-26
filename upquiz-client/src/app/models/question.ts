@@ -5,4 +5,5 @@ export class Question {
   banswer: string;
   canswer: string;
   danswer: string;
+  correctanswer: string;
 }

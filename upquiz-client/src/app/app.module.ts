@@ -1,4 +1,8 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import {
+  NgModule,
+  CUSTOM_ELEMENTS_SCHEMA,
+  NO_ERRORS_SCHEMA,
+} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -38,6 +42,7 @@ import { SettingsComponent } from './components/settings/settings.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { NewquizComponent } from './components/newquiz/newquiz.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -79,6 +84,7 @@ import { NewquizComponent } from './components/newquiz/newquiz.component';
     ScrollingModule,
     HttpClientModule,
     FormsModule,
+    CommonModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [],

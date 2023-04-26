@@ -36,6 +36,9 @@ public class Question {
     @Column(name = "danswer", nullable = false, columnDefinition = "TEXT")
     private String danswer;
 
+    @Column(name = "correctanswer", nullable = false, columnDefinition = "TEXT")
+    private String correctanswer;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idquiz", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)

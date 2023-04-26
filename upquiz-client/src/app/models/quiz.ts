@@ -5,4 +5,5 @@ export class Quiz {
   quizdescription: string;
   sumofpoints: number;
   quizicon: null;
+  iduser: number;
 }

@@ -12,7 +12,8 @@ import up.quiz.upquiz.repository.QuizRepository;
 import up.quiz.upquiz.repository.UserRepository;
 
 @RestController
-@RequestMapping("/api/{idUser}/quizzes")
+@CrossOrigin(origins = "http://localhost:4200")
+@RequestMapping("/api/quizzes")
 public class QuizController {
 
     private final QuizRepository quizRepository;
@@ -24,7 +25,7 @@ public class QuizController {
     }
 
     // Get all quizzes for the user
-    @GetMapping("")
+    @GetMapping("/{idUser}")
     public List<Quiz> getAllQuizzesForUser(@PathVariable long idUser) {
         User user = userRepository.findById(idUser)
                 .orElseThrow(() -> new ResourceNotFoundException("userRepository", "idUser", idUser));
@@ -33,15 +34,15 @@ public class QuizController {
     }
 
     // Get detailes about specific quiz for a user
-    @GetMapping("/{idQuiz}")
-    public Quiz getQuizByIdQuiz(@PathVariable long idUser, @PathVariable Long idQuiz) {
+    @GetMapping("/quiz/{idQuiz}")
+    public Quiz getQuizByIdQuiz(@PathVariable Long idQuiz) {
         Quiz quiz = quizRepository.findById(idQuiz)
                 .orElseThrow(() -> new ResourceNotFoundException("quizRepository", "idQiz", idQuiz));
         return quiz;
     }
 
     // Create a new quiz for a user
-    @PostMapping("")
+    @PostMapping("/{idUser}")
     public Quiz createQuizForUser(@PathVariable long idUser, @RequestBody Quiz newQuiz) {
         User user = userRepository.findById(idUser)
                 .orElseThrow(() -> new ResourceNotFoundException("userRepository", "idUser", idUser));
@@ -51,8 +52,7 @@ public class QuizController {
 
     // Update an existing quiz for a user
     @PutMapping("/{idQuiz}")
-    public Quiz updateQuizByIdQuiz(@PathVariable long idUser, @PathVariable long idQuiz,
-            @RequestBody Quiz quizUpdated) {
+    public Quiz updateQuizByIdQuiz(@PathVariable long idQuiz, @RequestBody Quiz quizUpdated) {
         Quiz quiz = quizRepository.findById(idQuiz)
                 .orElseThrow(() -> new ResourceNotFoundException("quizRepository", "idQuiz", idQuiz));
         quiz.setQuiztitle(quizUpdated.getQuiztitle());
@@ -63,7 +63,7 @@ public class QuizController {
 
     // Delete a quiz for a specific user
     @DeleteMapping("/{idQuiz}")
-    public ResponseEntity<?> deleteQuizByIdQuiz(@PathVariable long idUser, @PathVariable long idQuiz) {
+    public ResponseEntity<?> deleteQuizByIdQuiz(@PathVariable long idQuiz) {
         Quiz quizToBeDeleted = quizRepository.findById(idQuiz)
                 .orElseThrow(() -> new ResourceNotFoundException("quizRepository", "idQuiz", idQuiz));
         quizRepository.delete(quizToBeDeleted);

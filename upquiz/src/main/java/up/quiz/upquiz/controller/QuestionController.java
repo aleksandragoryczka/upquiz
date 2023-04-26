@@ -14,7 +14,8 @@ import up.quiz.upquiz.repository.QuestionRepository;
 import up.quiz.upquiz.repository.QuizRepository;
 
 @RestController
-@RequestMapping("/api/{idQuiz}/questions")
+@CrossOrigin(origins = "http://localhost:4200")
+@RequestMapping("/api/questions")
 public class QuestionController {
 
     private final QuestionRepository questionRepository;
@@ -26,7 +27,7 @@ public class QuestionController {
     }
 
     // Get all questions for specific quiz
-    @GetMapping("")
+    @GetMapping("/{idQuiz}")
     public List<Question> getQuestionsForQuiz(@PathVariable long idQuiz) {
         Quiz quiz = quizRepository.findById(idQuiz)
                 .orElseThrow(() -> new ResourceNotFoundException("quizRepository", "idQuiz", idQuiz));
@@ -34,7 +35,7 @@ public class QuestionController {
     }
 
     // Add new question to quiz by quiz id
-    @PostMapping("")
+    @PostMapping("/add/{idQuiz}")
     public Question addQuestionToQuiz(@PathVariable long idQuiz, @RequestBody Question newQuestion) {
         Quiz quiz = quizRepository.findById(idQuiz)
                 .orElseThrow(() -> new ResourceNotFoundException("quizRepository", "idQuiz", idQuiz));
@@ -43,8 +44,7 @@ public class QuestionController {
     }
 
     @PutMapping("/{idQuestion}")
-    public Question updateQuestionByIdQuestion(@PathVariable long idQuiz, @PathVariable long idQuestion,
-            @RequestBody Question questionUpdated) {
+    public Question updateQuestionByIdQuestion(@PathVariable long idQuestion, @RequestBody Question questionUpdated) {
         Question question = questionRepository.findById(idQuestion)
                 .orElseThrow(() -> new ResourceNotFoundException("questionRepository", "idQuestion", idQuestion));
         question.setQuestion(questionUpdated.getQuestion());
@@ -52,11 +52,12 @@ public class QuestionController {
         question.setBanswer(questionUpdated.getBanswer());
         question.setCanswer(questionUpdated.getCanswer());
         question.setDanswer(questionUpdated.getDanswer());
+        question.setCorrectanswer(questionUpdated.getCorrectanswer());
         return questionRepository.save(question);
     }
 
     @DeleteMapping("/{idQuestion}")
-    public ResponseEntity<?> deleteQuestionByIdQuestion(@PathVariable long idQuiz, @PathVariable long idQuestion) {
+    public ResponseEntity<?> deleteQuestionByIdQuestion(@PathVariable long idQuestion) {
         Question questionToBeDeleted = questionRepository.findById(idQuestion)
                 .orElseThrow(() -> new ResourceNotFoundException("questionRepository", "idQuestion", idQuestion));
         questionRepository.delete(questionToBeDeleted);

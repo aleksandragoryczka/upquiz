@@ -8,6 +8,7 @@ import { QuizDetailsQuestionComponent } from '../quiz-details-question/quiz-deta
   styleUrls: ['./newquiz.component.scss'],
 })
 export class NewquizComponent implements OnInit {
+  showButtons = false;
   questions: any[] = [QuizDetailsQuestionComponent];
 
   addQuestion() {

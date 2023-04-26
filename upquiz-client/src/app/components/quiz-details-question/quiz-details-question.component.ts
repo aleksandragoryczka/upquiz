@@ -1,6 +1,7 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { InPlaceEditorComponent } from '@syncfusion/ej2-angular-inplace-editor';
 import { ChangeEventArgs } from '@syncfusion/ej2-buttons';
+import { Question } from 'src/app/models/question';
 
 enum CheckBoxType {
   A,
@@ -16,6 +17,7 @@ enum CheckBoxType {
   styleUrls: ['./quiz-details-question.component.scss'],
 })
 export class QuizDetailsQuestionComponent {
+  @Input() question: Question;
   check_box_type = CheckBoxType;
   currentlyChecked: CheckBoxType;
 

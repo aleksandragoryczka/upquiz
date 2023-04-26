@@ -5,7 +5,7 @@
     <div class="container">
         <button mat-raised-button>Save</button>
         <button mat-raised-button (click)="addQuestion()">Add question</button>
-        <app-quiz></app-quiz>
+        <app-quiz [showButtons]="showButtons"></app-quiz>
         <cdk-virtual-scroll-viewport appendOnly itemSize="50" class="viewport">
             <ng-container *ngFor="let question of questions">
                 <ng-container *ngComponentOutlet="question"></ng-container>

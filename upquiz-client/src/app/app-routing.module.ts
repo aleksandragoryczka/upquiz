@@ -26,9 +26,9 @@ const routes: Routes = [
   { path: 'student', component: StudentComponent },
   { path: 'teacher/:id', component: TeacherComponent },
   { path: 'teacher/:id/settings', component: SettingsComponent },
-  { path: 'results', component: ResultsComponent },
-  { path: 'teacher/:id/quiz-details', component: QuizDetailsComponent },
   { path: 'teacher/:id/quizzes', component: NewquizComponent },
+  { path: 'quiz-details/:id', component: QuizDetailsComponent },
+  { path: 'results', component: ResultsComponent },
 ];
 
 @NgModule({

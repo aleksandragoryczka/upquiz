@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Quiz } from 'src/app/models/quiz';
 import { QuizService } from 'src/app/services/quiz.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -9,10 +10,17 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./teacher.component.scss'],
 })
 export class TeacherComponent implements OnInit {
-  //quizzes = [1, 2, 3, 4, 5, 6, 7, 8];
+  constructor(private quizService: QuizService) {}
+  quizzes: Quiz[];
+  showButtons = true;
 
-  quizzes: any;
-
+  ngOnInit(): void {
+    const userid = 1; // TODO: Replace with the actual user ID
+    this.quizService.getAllQuizzesForUser(userid).subscribe((data) => {
+      this.quizzes = data;
+    });
+  }
+  /*
   constructor(private quizService: QuizService) {}
 
   ngOnInit(): void {
@@ -21,5 +29,5 @@ export class TeacherComponent implements OnInit {
 
   getAllQuizzesForUser(): void {
     this.quizService.getAll().subs;
-  }
+  }*/
 }

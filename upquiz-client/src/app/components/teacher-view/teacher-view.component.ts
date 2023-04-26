@@ -22,7 +22,8 @@ export class TeacherViewComponent implements OnInit {
   }
 
   getUser(id): void {
-    this.userService.get(id).subscribe(
+    //TODO: add getting user by id
+    this.userService.get(1).subscribe(
       (data) => {
         this.currentUser = data;
         console.log(data);

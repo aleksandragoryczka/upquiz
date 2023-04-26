@@ -17,4 +17,11 @@
   p {
     font-size: 16px;
   }
+
+  .quiz-design {
+    width: 100%;
+    mat-form-field {
+      width: 100%;
+    }
+  }
 }
