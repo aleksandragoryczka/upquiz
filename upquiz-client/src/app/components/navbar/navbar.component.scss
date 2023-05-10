@@ -1,7 +1,10 @@
+@import "../../../variables.scss";
+
 mat-toolbar {
   background: transparent;
   padding: 30px;
   z-index: 9999;
+  height: $navbar-height;
 }
 
 #logo {

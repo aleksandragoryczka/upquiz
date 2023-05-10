@@ -5,9 +5,13 @@
   margin-right: 25px;
 }
 
+.quiz-details-view-container {
+  height: calc(100vh - $navbar-height);
+}
+
 .container {
   .viewport {
-    height: 400px;
+    height: 53vh;
   }
 
   button {

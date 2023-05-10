@@ -2,7 +2,7 @@
 
 .teacher-info-panel {
   width: 350px;
-  height: 100%;
+  height: calc(100vh - $navbar-height);
   left: 0;
   background-color: $panel-background;
   color: #ffffff;

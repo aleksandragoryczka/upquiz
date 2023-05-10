@@ -3,6 +3,7 @@
 .teacher-panel-container {
   width: 30%;
   margin-right: 25px;
+  height: calc(100vh - $navbar-height);
 }
 
 .container {

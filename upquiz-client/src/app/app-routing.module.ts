@@ -26,8 +26,9 @@ const routes: Routes = [
   { path: 'student', component: StudentComponent },
   { path: 'teacher/:id', component: TeacherComponent },
   { path: 'teacher/:id/settings', component: SettingsComponent },
-  { path: 'teacher/:id/quizzes', component: NewquizComponent },
-  { path: 'quiz-details/:id', component: QuizDetailsComponent },
+  //{ path: 'teacher/:id/quizzes', component: NewquizComponent },
+  { path: 'teacher/:id/new-quiz', component: NewquizComponent },
+  { path: ':id/quiz-details/:idquiz', component: QuizDetailsComponent },
   { path: 'results', component: ResultsComponent },
 ];
 

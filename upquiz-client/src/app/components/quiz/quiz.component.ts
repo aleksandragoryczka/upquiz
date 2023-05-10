@@ -1,7 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PinComponent } from '../pin/pin.component';
-import { Quiz } from 'src/app/models/quiz';
+import { Quiz } from '../../models/quiz';
 import { QuizService } from '../../services/quiz.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -11,15 +11,19 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./quiz.component.scss'],
 })
 export class QuizComponent {
-  @Input() quiz: Quiz;
-  @Input() showButtons: boolean;
+  @Input() quiz!: Quiz;
+  @Input() showButtons: boolean = false;
+
+  kot = 1;
 
   constructor(
     private modalService: NgbModal,
     private quizService: QuizService,
     private route: ActivatedRoute,
     private router: Router
-  ) {}
+  ) {
+    console.log(this.showButtons);
+  }
 
   getPin() {
     const modalRef = this.modalService.open(PinComponent);
@@ -46,7 +50,9 @@ export class QuizComponent {
       (data) => {
         this.quiz = data;
         console.log(data);
-        this.router.navigate(['/quiz-details/' + idquiz]);
+        console.log('user id; ' + this.quiz?.iduser);
+        const iduser = this.route.snapshot.paramMap.get('id');
+        this.router.navigate(['/' + iduser + '/quiz-details/' + idquiz]);
       },
       (error) => console.log(error)
     );

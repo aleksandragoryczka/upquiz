@@ -5,6 +5,7 @@ import { QuizService } from 'src/app/services/quiz.service';
 import { QuizDetailsQuestionComponent } from '../quiz-details-question/quiz-details-question.component';
 import { Question } from 'src/app/models/question';
 import { QuestionService } from 'src/app/services/question.service';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-quiz-details',
@@ -15,6 +16,7 @@ export class QuizDetailsComponent implements OnInit {
   //questions = [1, 2, 3, 4];
   questions: Question[];
   @Input() quiz: Quiz;
+  currentUser: User = new User();
   showButtons = true;
 
   constructor(
@@ -24,15 +26,18 @@ export class QuizDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const userid = 1; // TODO: Replace with the actual user ID
-    let id_quiz = this.route.snapshot.paramMap.get('id');
-    this.getQuizById(id_quiz);
-    this.questionService.getAllQuestionsForQuiz(id_quiz).subscribe((data) => {
+    const idquiz = this.route.snapshot.paramMap.get('idquiz');
+    //const iduser = this.route.snapshot.paramMap.get('id');
+    //let id_quiz = 153;
+    //this.currentUser.iduser = this.route.snapshot.paramMap.get('id');
+    this.getQuizById(idquiz);
+    this.questionService.getAllQuestionsForQuiz(idquiz).subscribe((data) => {
       this.questions = data;
     });
   }
 
   getQuizById(idquiz) {
+    console.log('tu ' + idquiz);
     this.quizService.get(idquiz).subscribe(
       (data) => {
         this.quiz = data;
