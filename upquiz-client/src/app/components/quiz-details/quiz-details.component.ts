@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Quiz } from 'src/app/models/quiz';
 import { QuizService } from 'src/app/services/quiz.service';
@@ -22,7 +22,8 @@ export class QuizDetailsComponent implements OnInit {
   constructor(
     private quizService: QuizService,
     private questionService: QuestionService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+
   ) {}
 
   ngOnInit(): void {
@@ -37,13 +38,25 @@ export class QuizDetailsComponent implements OnInit {
   }
 
   getQuizById(idquiz) {
-    console.log('tu ' + idquiz);
     this.quizService.get(idquiz).subscribe(
       (data) => {
         this.quiz = data;
-        console.log(data);
       },
       (error) => console.log(error)
     );
   }
+
+  deleteQuestion(question: Question){ 
+    if(typeof question.idquestion !== 'undefined'){
+      this.questionService.deleteQuestion(question.idquestion).subscribe();
+      location.reload();
+    } 
+
+    //console.log("index: " + questionIndex);
+  }
 }
+
+    /*
+    this.questionService.deleteQuestion(idQuestion).subscribe(
+      () => 
+    )*/

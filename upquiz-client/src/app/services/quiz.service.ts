@@ -14,11 +14,15 @@ export class QuizService {
     return this.http.get(`${baseUrl}/${id}`);
   }
 
-  delete(id): Observable<any> {
+  delete(id: number): Observable<any> {
     return this.http.delete(`${baseUrl}/${id}`);
   }
 
-  get(id): Observable<any> {
+  get(id: number): Observable<any> {
     return this.http.get(`${baseUrl}/quiz/${id}`);
+  }
+
+  addQuiz(idUser: number, quizBody): Observable<any>{
+    return this.http.post(`${baseUrl}/${idUser}`, quizBody);
   }
 }

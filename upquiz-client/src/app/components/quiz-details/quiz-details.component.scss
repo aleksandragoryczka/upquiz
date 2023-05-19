@@ -6,12 +6,12 @@
 }
 
 .quiz-details-view-container {
-  height: calc(100vh - $navbar-height);
+  height: calc(100vh - $navbar-height - $mat-raised-button-height - $quiz-card-height);
 }
 
 .container {
   .viewport {
-    height: 53vh;
+    height: calc(100vh - $navbar-height - $mat-raised-button-height - $quiz-card-height);
   }
 
   button {
@@ -19,5 +19,6 @@
     color: #ffffff;
     margin-bottom: 11px;
     margin-right: 20px;
+    height: $mat-raised-button-height;
   }
 }

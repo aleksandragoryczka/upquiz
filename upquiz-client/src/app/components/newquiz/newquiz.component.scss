@@ -15,5 +15,29 @@
     color: #ffffff;
     margin-bottom: 11px;
     margin-right: 20px;
+    height: $mat-raised-button-height;
   }
 }
+
+
+.card-body {
+  background: $card-backgorund;
+  box-shadow: 10px 6px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 0;
+  padding: 20px;
+
+  * {
+    color: #ffffff;
+  }
+
+  #quiz-img {
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+  }
+
+  p {
+    font-size: 16px;
+  }
+}
+

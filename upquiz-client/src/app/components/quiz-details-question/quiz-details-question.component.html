@@ -1,10 +1,67 @@
 <div class="card-container">
-    <div class="card mb-4 d-flex flex-row-reverse">
+    <div class="card mb-4 d-flex flex-row-reverse" >
         <div class="card-menu">
-            <button mat-button><mat-icon>restore_from_trash</mat-icon>Delete</button>
-            <button mat-button><mat-icon>edit</mat-icon>Edit</button>
+            <button mat-button (click)="deleteQuestion(question)"><mat-icon>restore_from_trash</mat-icon>Delete</button>
+  <!--          <button mat-button><mat-icon>edit</mat-icon>Edit</button> -->
         </div>
-        <div class="card-body">
+        <div class="card-body d-flex flex-column">
+            <div class="form-check d-flex align-items-center">
+                <mat-form-field class="card-content-question">
+                    <mat-label>Question</mat-label>
+                    <input matInput
+                        type="text"          
+                        class="form-control"
+                        name="question"
+                        [(ngModel)]="question.question">
+                </mat-form-field>
+            </div>
+            <div class="form-check d-flex align-items-center">
+                <input type="radio" [(ngModel)]="question.correctanswer" value="a" >
+                <mat-form-field class="card-content-question">
+                    <mat-label>Answer</mat-label>
+                    <input matInput
+                        type="text"          
+                        class="form-control"
+                        name="aanswer"
+                        [(ngModel)]="question.aanswer">
+                </mat-form-field>
+            </div>
+            <div class="form-check d-flex align-items-center">
+                <input type="radio" [(ngModel)]="question.correctanswer" value="b" >
+                <mat-form-field class="card-content-question">
+                    <mat-label>Answer</mat-label>
+                    <input matInput
+                        type="text"          
+                        class="form-control"
+                        name="banswer"
+                        [(ngModel)]="question.banswer">
+                </mat-form-field>
+            </div>
+            <div class="form-check d-flex align-items-center">
+                <input type="radio" [(ngModel)]="question.correctanswer" value="c" >
+                <mat-form-field class="card-content-question">
+                    <mat-label>Answer</mat-label>
+                    <input matInput
+                        type="text"          
+                        class="form-control"
+                        name="canswer"
+                        [(ngModel)]="question.canswer">
+                </mat-form-field>
+            </div>
+            <div class="form-check d-flex align-items-center">
+                <input type="radio" [(ngModel)]="question.correctanswer" value="d" >
+                <mat-form-field class="card-content-question">
+                    <mat-label>Answer</mat-label>
+                    <input matInput
+                        type="text"          
+                        class="form-control"
+                        name="danswer"
+                        [(ngModel)]="question.danswer">
+                </mat-form-field>
+            </div>
+        </div>   
+        <!--   
+        <div class="card-body" *ngIf="flag">
             <p>{{question.question}}</p>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" [checked]="currentlyChecked === check_box_type.A" 
@@ -33,6 +90,7 @@
                 <label class="form-check-label" for="q1_r4">
                     {{question.danswer}}
                 </label>
-        </div>             
+        </div>--> 
+      
     </div>
 </div>

@@ -23,14 +23,7 @@ export class RegisterComponent implements OnInit {
       password: this.user.password,
     };
 
-    this.userService.createUser(new_user).subscribe(
-      (response) => {
-        console.log(response);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    this.userService.createUser(new_user).subscribe();
   }
 
   /*

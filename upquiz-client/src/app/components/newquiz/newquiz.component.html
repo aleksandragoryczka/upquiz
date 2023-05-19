@@ -3,12 +3,33 @@
         <app-TeacherView [currentUser]="currentUser"></app-TeacherView>
     </div>
     <div class="container">
-        <button mat-raised-button>Save</button>
+        <button mat-raised-button (click)="saveNewQuizWithQuestions()" routerLink="/teacher/{{currentUser.iduser}}">Save</button>
         <button mat-raised-button (click)="addQuestion()">Add question</button>
-        <app-quiz [showButtons]="false" [quiz]="quiz"></app-quiz>
+        <div class="card-body d-flex flex-column">
+            <mat-form-field class="card-content" appearance="outline">
+                <mat-label>Quiz title</mat-label>
+                <input matInput
+                    type="text"          
+                    class="form-control"
+                    [(ngModel)]="quiz.quiztitle"
+                    required
+                    name="quiztitle">
+            </mat-form-field>
+            <mat-form-field class="card-content" appearance="outline">
+                <mat-label>Quiz description</mat-label>
+                <input matInput
+                    type="text"          
+                    class="form-control"
+                    required
+                    [(ngModel)]="quiz.quizdescription"
+                    name="quizdescription">
+            </mat-form-field>           
+        </div>
+        <br>
         <cdk-virtual-scroll-viewport appendOnly itemSize="50" class="viewport">
             <ng-container *ngFor="let question of questions">
-                <ng-container *ngComponentOutlet="question"></ng-container>
+                <app-quiz-details-question [question]="question">
+                </app-quiz-details-question >
             </ng-container>
         </cdk-virtual-scroll-viewport>
     </div>

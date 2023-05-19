@@ -5,3 +5,18 @@
   border: 2px solid #000000;
   border-radius: 0;
 }
+
+::ng-deep .card-content-question .mat-mdc-form-field-subscript-wrapper{
+  display: none;
+}
+
+.card-content-question{
+  padding-bottom: 3px;
+}
+.form-check{
+  gap: 8px;
+}
+mat-form-field{
+  width: 90%;
+}
+

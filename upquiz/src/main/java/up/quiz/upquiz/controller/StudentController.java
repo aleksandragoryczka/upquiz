@@ -11,6 +11,7 @@ import up.quiz.upquiz.repository.QuizRepository;
 import up.quiz.upquiz.repository.StudentRepository;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/students/{idQuiz}")
 public class StudentController {
 

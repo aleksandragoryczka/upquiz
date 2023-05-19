@@ -1,12 +1,10 @@
 package up.quiz.upquiz.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import jakarta.validation.Valid;
 import up.quiz.upquiz.exception.ResourceNotFoundException;
 import up.quiz.upquiz.model.Question;
 import up.quiz.upquiz.model.Quiz;

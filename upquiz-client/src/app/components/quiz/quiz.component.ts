@@ -12,49 +12,36 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class QuizComponent {
   @Input() quiz!: Quiz;
-  @Input() showButtons: boolean = false;
-
-  kot = 1;
 
   constructor(
     private modalService: NgbModal,
     private quizService: QuizService,
     private route: ActivatedRoute,
     private router: Router
-  ) {
-    console.log(this.showButtons);
-  }
+  ) {}
 
-  getPin() {
+  getPin(): void {
     const modalRef = this.modalService.open(PinComponent);
   }
 
-  deleteQuiz(idquiz) {
+  deleteQuiz(idquiz: number):void {
     this.quizService.delete(idquiz).subscribe(
-      (response) => {
-        console.log(response);
-
-        let currentUrl = '/teacher/1'; //TODO: replace with userid
+      () => {
+        let currentUrl = `/teacher/${this.route.snapshot.paramMap.get('id')}`; //TODO: replace with userid
         this.router
           .navigateByUrl('/', { skipLocationChange: true })
           .then(() => this.router.navigate([currentUrl]));
-      },
-      (error) => {
-        console.log(error);
       }
     );
   }
 
-  getQuizById(idquiz) {
+  getQuizById(idquiz: number): void {
     this.quizService.get(idquiz).subscribe(
       (data) => {
         this.quiz = data;
-        console.log(data);
-        console.log('user id; ' + this.quiz?.iduser);
         const iduser = this.route.snapshot.paramMap.get('id');
         this.router.navigate(['/' + iduser + '/quiz-details/' + idquiz]);
       },
-      (error) => console.log(error)
     );
   }
 }

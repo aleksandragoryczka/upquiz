@@ -9,7 +9,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./settings.component.scss'],
 })
 export class SettingsComponent implements OnInit {
-  currentUser: User;
+  currentUser: User = new User();
 
   constructor(
     private userService: UserService,
@@ -26,10 +26,6 @@ export class SettingsComponent implements OnInit {
       (data) => {
         this.currentUser = data;
         this.currentUser.password = '';
-        console.log(data);
-      },
-      (error) => {
-        console.log(error);
       }
     );
   }

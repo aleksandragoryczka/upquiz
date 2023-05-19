@@ -1,10 +1,7 @@
 <div class="card mb-4 d-flex flex-row align-items-center">
     <img id="quiz-img" src="../../../assets/images/cat.jpg">
     
-    <div class="card-body" >
-        hhhh
-        <ng-container *ngIf="showButtons">
-
+    <div class="card-body">            
             <h1 class="card-title">{{quiz.quiztitle}}</h1>
             <p class="card-text">{{quiz.quizdescription}}</p>
             <mat-toolbar-row>
@@ -14,21 +11,5 @@
                 <button mat-button (click)="getQuizById(quiz.idquiz)"><mat-icon>subdirectory_arrow_right</mat-icon>Show</button>
                 <button mat-button routerLink="/results"><mat-icon>table_chart</mat-icon>Results</button>
             </mat-toolbar-row>
-        </ng-container>
-        x = {{ kot}}
-        <ng-container *ngIf="!showButtons">
-            <div class="d-flex flex-column align-items-center m-4" >
-                <p>coooos</p>
-                <mat-form-field appearance="outline">
-                    <mat-label>Quiz title</mat-label>
-                    <input matInput type="text" class="form-control" id="quiztitle" name="quiztitle" , [(ngModel)]="quiz.quiztitle">
-                </mat-form-field>
-                <mat-form-field appearance="outline">
-                    <mat-label>Description</mat-label>
-                    <input matInput type="text" class="form-control" id="descrption" name="quizdescription" ,
-                    [(ngModel)]="quiz.quizdescription">
-                </mat-form-field>
-            </div>
-        </ng-container>
     </div>
 </div>
