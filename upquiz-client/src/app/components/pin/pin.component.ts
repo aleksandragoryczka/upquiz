@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { QuizService } from 'src/app/services/quiz.service';
 
 @Component({
   selector: 'app-pin',
@@ -7,5 +8,11 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./pin.component.scss'],
 })
 export class PinComponent {
-  constructor(public activeModal: NgbActiveModal) {}
+  @Input() pin: number;
+
+  constructor(
+    public activeModal: NgbActiveModal, 
+    private quizService: QuizService) {}
+
+
 }

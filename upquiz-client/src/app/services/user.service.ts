@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { User } from '../models/user';
@@ -27,4 +27,6 @@ export class UserService {
   update(id, data): Observable<any> {
     return this.http.put(`${baseUrl}/${id}`, data);
   }
+
+  
 }

@@ -20,8 +20,10 @@ export class QuizComponent {
     private router: Router
   ) {}
 
-  getPin(): void {
+  getPin(idQuiz: number): void {
     const modalRef = this.modalService.open(PinComponent);
+    this.quizService.generateQuizPin(idQuiz).subscribe((res) => modalRef.componentInstance.pin = res);
+
   }
 
   deleteQuiz(idquiz: number):void {

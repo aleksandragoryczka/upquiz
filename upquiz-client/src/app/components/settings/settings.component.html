@@ -2,53 +2,60 @@
     <div class="teacher-panel-container">
         <app-TeacherView [currentUser]="currentUser"></app-TeacherView>
     </div>
-    <div class="settings-container d-flex flex-column justify-content-flex-start align-items-center">
-        <img src="../../../assets/images/questionmarkicon.svg">
-        <mat-form-field appearance="fill">
-            <mat-label>New name</mat-label>
-            <input matInput
-            type="text"
-            class="form-control"
-            id="first_name"
-            required
-            [(ngModel)]="currentUser.firstname"
-            name="first_name">
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-            <mat-label>New surname</mat-label>
-            <input matInput
-            type="text"          
-            class="form-control"
-            id="surname"
-            required
-            [(ngModel)]="currentUser.surname"
-            name="surname">
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-            <mat-label>Old password</mat-label>
-            <input matInput
-            type="password"          
-            class="form-control"
-            id="password"
-            required
-            name="password">
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-            <mat-label>New password</mat-label>
-            <input matInput
-            type="password"          
-            class="form-control"
-            id="password"
-            required
-            [(ngModel)]="currentUser.password"
-            name="password">
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-            <mat-label>Repeat new password</mat-label>
-            <input matInput
-            type="password"      
-            required>
-        </mat-form-field>
-        <button mat-raised-button routerLink="/teacher/{{currentUser.iduser}}" (click)="updateUser()">Save</button>
+    <div class="settings-container d-flex flex-row align-items-center justify-content-around">
+        <div class="d-flex flex-column align-items-center">
+            <input type="file" (change)="onFileSelected($event)" accept="image/*">
+            <img id="teacher-img" src="../../../assets/images/cat.jpg">
+        <!--    <button mat-raised-button class="upload-button" (click)="uploadAvatar()">Upload new picture</button> -->
+        </div>  
+        <div class="input-container d-flex flex-column justify-content-flex-start align-items-center">
+            <img src="../../../assets/images/questionmarkicon.svg">
+            <mat-form-field appearance="fill">
+                <mat-label>New name</mat-label>
+                <input matInput
+                type="text"
+                class="form-control"
+                id="first_name"
+                required
+                [(ngModel)]="currentUser.firstname"
+                name="first_name">
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>New surname</mat-label>
+                <input matInput
+                type="text"          
+                class="form-control"
+                id="surname"
+                required
+                [(ngModel)]="currentUser.surname"
+                name="surname">
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Old password</mat-label>
+                <input matInput
+                type="password"          
+                class="form-control"
+                id="password"
+                required
+                name="password">
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>New password</mat-label>
+                <input matInput
+                type="password"          
+                class="form-control"
+                id="password"
+                required
+                [(ngModel)]="currentUser.password"
+                name="password">
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Repeat new password</mat-label>
+                <input matInput
+                type="password"      
+                required>
+            </mat-form-field>
+            <button mat-raised-button routerLink="/teacher/{{currentUser.iduser}}" (click)="updateUser()">Save</button>
+        </div>
     </div>
 </div>

@@ -33,6 +33,9 @@ public class Quiz {
     @Column(name = "pin", nullable = true)
     private int pin;
 
+    @Column(name = "pingeneartedtime", nullable = true)
+    private java.sql.Timestamp pingeneratedtime;
+
     @Column(name = "sumofpoints", nullable = true)
     private long sumofpoints;
 

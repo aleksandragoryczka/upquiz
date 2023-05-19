@@ -10,6 +10,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class SettingsComponent implements OnInit {
   currentUser: User = new User();
+  selectedPicture: File;
 
   constructor(
     private userService: UserService,
@@ -31,12 +32,6 @@ export class SettingsComponent implements OnInit {
   }
 
   updateUser(): void {
-    const data = {
-      firstname: this.currentUser.firstname,
-      surname: this.currentUser.surname,
-      password: this.currentUser.password,
-    };
-
     this.userService
       .update(this.currentUser.iduser, this.currentUser)
       .subscribe(
@@ -47,5 +42,20 @@ export class SettingsComponent implements OnInit {
           console.log(error);
         }
       );
+  }
+
+  //TODO: uploading avatar
+  onFileSelected(event: any) : void{
+    this.selectedPicture = event.target.files[0];
+  }
+
+  uploadAvatar():void{
+    if(!this.selectedPicture){
+      return;
+      //TODO: add popup
+    }
+    const formData = new FormData();
+    formData.append('photo', this.selectedPicture);
+    //this.userService.update(this.currentUser.iduser, formData).subscribe()
   }
 }

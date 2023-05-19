@@ -25,4 +25,8 @@ export class QuizService {
   addQuiz(idUser: number, quizBody): Observable<any>{
     return this.http.post(`${baseUrl}/${idUser}`, quizBody);
   }
+
+  generateQuizPin(idQuiz: number): Observable<any>{
+    return this.http.get(`${baseUrl}/pin/${idQuiz}`);
+  }
 }

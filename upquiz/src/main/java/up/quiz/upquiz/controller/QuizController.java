@@ -3,6 +3,9 @@ package up.quiz.upquiz.controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 import up.quiz.upquiz.exception.ResourceNotFoundException;
@@ -37,7 +40,7 @@ public class QuizController {
     @GetMapping("/quiz/{idQuiz}")
     public Quiz getQuizByIdQuiz(@PathVariable Long idQuiz) {
         Quiz quiz = quizRepository.findById(idQuiz)
-                .orElseThrow(() -> new ResourceNotFoundException("quizRepository", "idQiz", idQuiz));
+                .orElseThrow(() -> new ResourceNotFoundException("quizRepository", "idQuiz", idQuiz));
         return quiz;
     }
 
@@ -61,6 +64,24 @@ public class QuizController {
         return quizRepository.save(quiz);
     }
 
+
+    //Generate PIN and add its generation timestamp
+    @GetMapping("/pin/{idQuiz}")
+    public int generatePin(@PathVariable long idQuiz){
+        int min = 100000;
+        int max = 999999;
+        Quiz quiz = quizRepository.findById(idQuiz)
+                .orElseThrow(() -> new ResourceNotFoundException("quizRepository", "idQuiz", idQuiz));
+        if(quiz.getPin() == 0 || Timestamp.valueOf(LocalDateTime.now().minus(30, ChronoUnit.MINUTES)).after(quiz.getPingeneratedtime())){
+            int newPin = min + (int) (Math.random() * (max - min + 1));
+            quiz.setPingeneratedtime(new Timestamp(System.currentTimeMillis()));
+            quiz.setPin(newPin);
+            quizRepository.save(quiz);
+            return newPin;
+        }
+        return quiz.getPin();
+    }
+
     // Delete a quiz for a specific user
     @DeleteMapping("/{idQuiz}")
     public ResponseEntity<?> deleteQuizByIdQuiz(@PathVariable long idQuiz) {
@@ -69,4 +90,6 @@ public class QuizController {
         quizRepository.delete(quizToBeDeleted);
         return ResponseEntity.ok().build();
     }
+
+    
 }
