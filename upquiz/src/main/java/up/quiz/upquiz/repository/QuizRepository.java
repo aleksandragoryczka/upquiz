@@ -10,6 +10,7 @@ import up.quiz.upquiz.model.User;
 
 public interface QuizRepository extends JpaRepository<Quiz, Long> {
     List<Quiz> findByUser(User user);
+    Quiz findByPin(int pin);
 
     // Optional<Quiz> findByIdQuizA(Long idQuiz, User user);
 }

@@ -4,12 +4,12 @@
     <div class="join-container d-flex flex-column align-items-center justify-content-center">
         <mat-form-field appearance="fill">
             <mat-label>Your name</mat-label>
-            <input matInput>
+            <input matInput [(ngModel)] = "name">
         </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label>Your surname</mat-label>
-            <input matInput>
+            <input matInput [(ngModel)] = "surname">
         </mat-form-field>
-        <button mat-raised-button routerLink="student" (click)="activeModal.dismiss('Cross click')">Join</button>
+        <button mat-raised-button routerLink="student" (click)="joinStudent(name, surname)">Join</button>
     </div>
 </div>

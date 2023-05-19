@@ -12,7 +12,7 @@ import up.quiz.upquiz.repository.StudentRepository;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping("/api/students/{idQuiz}")
+@RequestMapping("/api/students")
 public class StudentController {
 
     private final StudentRepository studentRepository;
@@ -24,7 +24,7 @@ public class StudentController {
     }
 
     // Create a new student with result
-    @PostMapping("")
+    @PostMapping("/{idQuiz}")
     public Student createStudent(@PathVariable long idQuiz, @RequestBody Student student) {
         Quiz quiz = quizRepository.findById(idQuiz)
                 .orElseThrow(() -> new ResourceNotFoundException("quizRepository", "idQuiz", idQuiz));
@@ -32,8 +32,18 @@ public class StudentController {
         return studentRepository.save(student);
     }
 
+    //check if quiz with given PIN exists
+    @GetMapping("/checkPin/{pin}")
+    public Quiz checkPin(@PathVariable int pin){
+        Quiz quiz = quizRepository.findByPin(pin);
+        if(quiz != null){
+            return quiz;
+        }
+        return null;
+    }
+
     // Get all students' results for quiz
-    @GetMapping("")
+    @GetMapping("{idQuiz}")
     public List<Student> getAllStudentsForQuiz(@PathVariable long idQuiz) {
         Quiz quiz = quizRepository.findById(idQuiz)
                 .orElseThrow(() -> new ResourceNotFoundException("quizRepository", "idQuiz", idQuiz));

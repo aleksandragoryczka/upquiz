@@ -13,6 +13,4 @@ export class PinComponent {
   constructor(
     public activeModal: NgbActiveModal, 
     private quizService: QuizService) {}
-
-
 }

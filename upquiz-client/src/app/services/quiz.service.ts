@@ -10,7 +10,7 @@ const baseUrl = 'http://localhost:8080/api/quizzes';
 export class QuizService {
   constructor(private http: HttpClient) {}
 
-  getAllQuizzesForUser(id): Observable<any> {
+  getAllQuizzesForUser(id: number): Observable<any> {
     return this.http.get(`${baseUrl}/${id}`);
   }
 

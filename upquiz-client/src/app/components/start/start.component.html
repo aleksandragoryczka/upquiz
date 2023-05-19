@@ -6,7 +6,9 @@
             <p>quiz or exam?</p>
             <mat-form-field class="enter-pin-field">
                 <mat-label>Enter PIN</mat-label>
-                <input matInput placeholder="******" >
+                <input matInput 
+                placeholder="******" 
+                [(ngModel)]="insertedPin">
             </mat-form-field>
             <button mat-raised-button (click)="open()">Join</button>
         </div>
