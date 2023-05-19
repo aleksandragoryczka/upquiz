@@ -43,7 +43,7 @@ public class StudentController {
     }
 
     // Get all students' results for quiz
-    @GetMapping("{idQuiz}")
+    @GetMapping("results/{idQuiz}")
     public List<Student> getAllStudentsForQuiz(@PathVariable long idQuiz) {
         Quiz quiz = quizRepository.findById(idQuiz)
                 .orElseThrow(() -> new ResourceNotFoundException("quizRepository", "idQuiz", idQuiz));

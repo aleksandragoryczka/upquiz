@@ -4,6 +4,7 @@ import { PinComponent } from '../pin/pin.component';
 import { Quiz } from '../../models/quiz';
 import { QuizService } from '../../services/quiz.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { StudentService } from 'src/app/services/student.service';
 
 @Component({
   selector: 'app-quiz',
@@ -16,6 +17,7 @@ export class QuizComponent {
   constructor(
     private modalService: NgbModal,
     private quizService: QuizService,
+    private studentService: StudentService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
@@ -37,11 +39,20 @@ export class QuizComponent {
   }
 
   getQuizById(idquiz: number): void {
-    this.quizService.get(idquiz).subscribe(
+    this.quizService.getQuizById(idquiz).subscribe(
       (data) => {
         this.quiz = data;
         const iduser = this.route.snapshot.paramMap.get('id');
         this.router.navigate(['/' + iduser + '/quiz-details/' + idquiz]);
+      },
+    );
+  }
+
+  getResultsForQuiz(idquiz: number): void{
+    this.studentService.getResultsByQuizId(idquiz).subscribe(
+      () => {
+        const iduser = this.route.snapshot.paramMap.get('id');
+        this.router.navigate(['/' + iduser + '/results/' + idquiz]);
       },
     );
   }

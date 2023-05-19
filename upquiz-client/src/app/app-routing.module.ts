@@ -28,7 +28,7 @@ const routes: Routes = [
   { path: 'teacher/:id/settings', component: SettingsComponent },
   { path: 'teacher/:id/new-quiz', component: NewquizComponent },
   { path: ':id/quiz-details/:idquiz', component: QuizDetailsComponent },
-  { path: 'results', component: ResultsComponent },
+  { path: ':id/results/:idquiz', component: ResultsComponent },
 ];
 
 @NgModule({

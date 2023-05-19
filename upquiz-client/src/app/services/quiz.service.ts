@@ -18,7 +18,7 @@ export class QuizService {
     return this.http.delete(`${baseUrl}/${id}`);
   }
 
-  get(id: number): Observable<any> {
+  getQuizById(id: number): Observable<any> {
     return this.http.get(`${baseUrl}/quiz/${id}`);
   }
 

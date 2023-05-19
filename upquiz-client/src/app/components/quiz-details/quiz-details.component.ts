@@ -28,9 +28,7 @@ export class QuizDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     const idquiz = this.route.snapshot.paramMap.get('idquiz');
-    //const iduser = this.route.snapshot.paramMap.get('id');
-    //let id_quiz = 153;
-    //this.currentUser.iduser = this.route.snapshot.paramMap.get('id');
+
     this.getQuizById(idquiz);
     this.questionService.getAllQuestionsForQuiz(idquiz).subscribe((data) => {
       this.questions = data;
@@ -38,7 +36,7 @@ export class QuizDetailsComponent implements OnInit {
   }
 
   getQuizById(idquiz) {
-    this.quizService.get(idquiz).subscribe(
+    this.quizService.getQuizById(idquiz).subscribe(
       (data) => {
         this.quiz = data;
       },
@@ -51,12 +49,5 @@ export class QuizDetailsComponent implements OnInit {
       this.questionService.deleteQuestion(question.idquestion).subscribe();
       location.reload();
     } 
-
-    //console.log("index: " + questionIndex);
   }
 }
-
-    /*
-    this.questionService.deleteQuestion(idQuestion).subscribe(
-      () => 
-    )*/

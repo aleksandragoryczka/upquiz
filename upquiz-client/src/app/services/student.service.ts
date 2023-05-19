@@ -19,4 +19,8 @@ export class StudentService {
   createStudent(idQuiz: number, student: Student): Observable<any>{
     return this.http.post(`${baseUrl}/${idQuiz}`, student);
   }
+
+  getResultsByQuizId(id: number): Observable<any>{
+    return this.http.get(`${baseUrl}/results/${id}`)
+  }
 }
