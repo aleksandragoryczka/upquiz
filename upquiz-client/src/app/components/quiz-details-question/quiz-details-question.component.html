@@ -2,7 +2,6 @@
     <div class="card mb-4 d-flex flex-row-reverse" >
         <div class="card-menu">
             <button mat-button (click)="deleteQuestion(question)"><mat-icon>restore_from_trash</mat-icon>Delete</button>
-  <!--          <button mat-button><mat-icon>edit</mat-icon>Edit</button> -->
         </div>
         <div class="card-body d-flex flex-column">
             <div class="form-check d-flex align-items-center">
@@ -16,7 +15,7 @@
                 </mat-form-field>
             </div>
             <div class="form-check d-flex align-items-center">
-                <input type="radio" [(ngModel)]="question.correctanswer" value="a" >
+                <input type="radio" [(ngModel)]="question.correctanswer" name="q{{question.idquestion}}" id="q{{question.idquestion}}_a" value="a">
                 <mat-form-field class="card-content-question">
                     <mat-label>Answer</mat-label>
                     <input matInput
@@ -27,7 +26,7 @@
                 </mat-form-field>
             </div>
             <div class="form-check d-flex align-items-center">
-                <input type="radio" [(ngModel)]="question.correctanswer" value="b" >
+                <input type="radio" [(ngModel)]="question.correctanswer" name="q{{question.idquestion}}" id="q{{question.idquestion}}_b" value="b">
                 <mat-form-field class="card-content-question">
                     <mat-label>Answer</mat-label>
                     <input matInput
@@ -38,7 +37,7 @@
                 </mat-form-field>
             </div>
             <div class="form-check d-flex align-items-center">
-                <input type="radio" [(ngModel)]="question.correctanswer" value="c" >
+                <input type="radio" [(ngModel)]="question.correctanswer" name="q{{question.idquestion}}" id="q{{question.idquestion}}_c" value="c">
                 <mat-form-field class="card-content-question">
                     <mat-label>Answer</mat-label>
                     <input matInput
@@ -49,7 +48,7 @@
                 </mat-form-field>
             </div>
             <div class="form-check d-flex align-items-center">
-                <input type="radio" [(ngModel)]="question.correctanswer" value="d" >
+                <input type="radio" [(ngModel)]="question.correctanswer" name="q{{question.idquestion}}" id="q{{question.idquestion}}_d" value="d">
                 <mat-form-field class="card-content-question">
                     <mat-label>Answer</mat-label>
                     <input matInput

@@ -27,14 +27,13 @@ export class NewquizComponent implements OnInit {
     private quizService: QuizService, 
     private questionService: QuestionService) {}
 
-    ngOnInit(): void {
-      this.getUser(this.route.snapshot.paramMap.get('id'));
-    }
+  ngOnInit(): void {
+    this.getUser(this.route.snapshot.paramMap.get('id'));
+  }
 
   addQuestion() {
-    this.questions = [...this.questions, QuizDetailsQuestionComponent];
+    this.questions = [QuizDetailsQuestionComponent, ...this.questions];
   }
-  
 
   saveNewQuizWithQuestions(){ 
     const newQuiz = {
@@ -49,16 +48,6 @@ export class NewquizComponent implements OnInit {
       }
     );    
   }
-/*
-  deleteQuestion(question: Question){
-    console.log("och ach");
-    const questionIndex = this.questions.findIndex(q => q.aanswer === question.aanswer);
-    console.log("ech");
-    if(questionIndex != null){
-      console.log("udalo sie - indexpyatnia: " + questionIndex);
-    }
-    
-  }*/
 
   private saveQuestion(quizId): void{
     for(let question of this.questions){
@@ -70,8 +59,6 @@ export class NewquizComponent implements OnInit {
         danswer: question.danswer,
         correctanswer: question.correctanswer,
       };
-
-      console.log(newQuestion);
 
       this.questionService.addQuestionToQuiz(quizId, newQuestion).subscribe((res) => console.log(res)
       );

@@ -45,6 +45,7 @@ public class QuestionController {
     public Question updateQuestionByIdQuestion(@PathVariable long idQuestion, @RequestBody Question questionUpdated) {
         Question question = questionRepository.findById(idQuestion)
                 .orElseThrow(() -> new ResourceNotFoundException("questionRepository", "idQuestion", idQuestion));
+        System.out.println(question.getIdquestion());
         question.setQuestion(questionUpdated.getQuestion());
         question.setAanswer(questionUpdated.getAanswer());
         question.setBanswer(questionUpdated.getBanswer());

@@ -31,7 +31,7 @@ public class Student {
     @Column(name = "result")
     private long result;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idquiz", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore

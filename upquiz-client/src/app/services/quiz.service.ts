@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Quiz } from '../models/quiz';
+import { User } from '../models/user';
 
 const baseUrl = 'http://localhost:8080/api/quizzes';
 
@@ -20,6 +22,10 @@ export class QuizService {
 
   getQuizById(id: number): Observable<any> {
     return this.http.get(`${baseUrl}/quiz/${id}`);
+  }
+
+  getUserForQuiz(idQuiz: number): Observable<any>{
+    return this.http.get(`${baseUrl}/quiz/${idQuiz}/getUser`);
   }
 
   addQuiz(idUser: number, quizBody): Observable<any>{

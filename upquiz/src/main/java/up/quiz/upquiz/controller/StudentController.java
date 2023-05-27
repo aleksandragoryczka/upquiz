@@ -1,5 +1,8 @@
 package up.quiz.upquiz.controller;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.*;
@@ -36,8 +39,16 @@ public class StudentController {
     @GetMapping("/checkPin/{pin}")
     public Quiz checkPin(@PathVariable int pin){
         Quiz quiz = quizRepository.findByPin(pin);
-        if(quiz != null){
-            return quiz;
+        //System.out.println("quiz ID znalezionego: " + quiz.getIdquiz() );
+        if (quiz != null) {
+            System.out.println("quiz ID znalezionego: " + quiz.getIdquiz() );
+            if(Timestamp.valueOf(LocalDateTime.now().minus(30, ChronoUnit.MINUTES)).after(quiz.getPingeneratedtime())){
+                System.out.println("pin aktualny" + quiz.getPin() );
+                quiz.setPin(0);
+                quizRepository.save(quiz);
+            }else{
+                return quiz;
+            }
         }
         return null;
     }

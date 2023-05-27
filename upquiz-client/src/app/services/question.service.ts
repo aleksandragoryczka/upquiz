@@ -23,4 +23,8 @@ export class QuestionService {
     return this.http.delete(`${baseUrl}/${idQuestion}`);
   }
 
+  updateQuestion(idQuestion: number, updatedQuestionBody): Observable<any>{
+    return this.http.put(`${baseUrl}/${idQuestion}`, updatedQuestionBody);
+  }
+
 }

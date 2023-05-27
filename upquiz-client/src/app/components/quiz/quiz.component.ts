@@ -12,7 +12,7 @@ import { StudentService } from 'src/app/services/student.service';
   styleUrls: ['./quiz.component.scss'],
 })
 export class QuizComponent {
-  @Input() quiz!: Quiz;
+  @Input() quiz: Quiz;
 
   constructor(
     private modalService: NgbModal,
@@ -42,8 +42,9 @@ export class QuizComponent {
     this.quizService.getQuizById(idquiz).subscribe(
       (data) => {
         this.quiz = data;
-        const iduser = this.route.snapshot.paramMap.get('id');
-        this.router.navigate(['/' + iduser + '/quiz-details/' + idquiz]);
+        console.log(data);
+        let id = this.route.snapshot.paramMap.get('id');
+        this.router.navigate(['/' + id + '/quiz-details/' + idquiz]);
       },
     );
   }
@@ -51,7 +52,7 @@ export class QuizComponent {
   getResultsForQuiz(idquiz: number): void{
     this.studentService.getResultsByQuizId(idquiz).subscribe(
       () => {
-        const iduser = this.route.snapshot.paramMap.get('id');
+        let iduser = this.route.snapshot.paramMap.get('id');
         this.router.navigate(['/' + iduser + '/results/' + idquiz]);
       },
     );

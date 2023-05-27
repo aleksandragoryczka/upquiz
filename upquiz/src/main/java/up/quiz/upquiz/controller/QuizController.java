@@ -7,6 +7,7 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.util.Optional;
 
 import up.quiz.upquiz.exception.ResourceNotFoundException;
 import up.quiz.upquiz.model.Quiz;
@@ -41,7 +42,20 @@ public class QuizController {
     public Quiz getQuizByIdQuiz(@PathVariable Long idQuiz) {
         Quiz quiz = quizRepository.findById(idQuiz)
                 .orElseThrow(() -> new ResourceNotFoundException("quizRepository", "idQuiz", idQuiz));
+       // System.out.println(quiz.getUser());
         return quiz;
+    }
+
+
+    @GetMapping("/quiz/{idQuiz}/getUser")
+    public Optional<User> getUserForQuiz(@PathVariable Long idQuiz){
+        Quiz quiz = quizRepository.findById(idQuiz).orElseThrow(() -> new ResourceNotFoundException("quizRepository", "idQuiz", idQuiz));
+        if(quiz != null){
+            Optional<User> user = userRepository.findById(quiz.getUser().getIduser());
+            System.out.println(user);
+            return user;
+        }
+        return null;
     }
 
     // Create a new quiz for a user

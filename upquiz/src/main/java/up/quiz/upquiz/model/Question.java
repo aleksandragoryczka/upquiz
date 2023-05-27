@@ -39,7 +39,7 @@ public class Question {
     @Column(name = "correctanswer", nullable = false, columnDefinition = "TEXT")
     private String correctanswer;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idquiz", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore

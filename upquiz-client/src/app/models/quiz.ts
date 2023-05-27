@@ -1,3 +1,5 @@
+import { User } from "./user";
+
 export class Quiz {
   idquiz: number;
   pin: number;
@@ -5,6 +7,6 @@ export class Quiz {
   quizdescription: string;
   sumofpoints: number;
   quizicon: null;
-  iduser: number;
+  iduser: User;
 
 }

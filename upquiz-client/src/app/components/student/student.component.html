@@ -1,12 +1,12 @@
 <div class ="student-view-container d-flex flex-row justify-content-right">
     <div class="author-panel-container">
-        <app-AuthorView></app-AuthorView>
+        <app-AuthorView [currentQuiz]="currentQuiz" [currentUser]="currentUser"></app-AuthorView>
     </div>
     <div class="container">
         <button mat-raised-button (click)="open()" routerLink="/start">Submit answers</button>
         <cdk-virtual-scroll-viewport appendOnly itemSize="50" class="viewport">
             <div *cdkVirtualFor="let question of questions" class="example-item">
-                <app-question></app-question>
+                <app-question [question]="question"></app-question>
             </div>
         </cdk-virtual-scroll-viewport>
     </div>

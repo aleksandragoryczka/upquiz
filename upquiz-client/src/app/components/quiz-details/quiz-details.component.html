@@ -3,8 +3,8 @@
         <app-TeacherView [currentUser]="currentUser"></app-TeacherView>
     </div>
     <div class="container">
-        <button mat-raised-button>Save</button>
-        <button mat-raised-button>Add question</button>
+        <button mat-raised-button routerLink="/teacher/{{currentUser.iduser}}" (click)="updateQuizWithQuestions()">Save</button>
+        <button mat-raised-button (click)="addQuestion()">Add question</button>
         <app-quiz [quiz]="quiz"></app-quiz>
         <cdk-virtual-scroll-viewport appendOnly itemSize="50" class="viewport">
             <div *cdkVirtualFor="let question of questions" class="example-item">

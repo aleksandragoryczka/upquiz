@@ -6,4 +6,7 @@ import { Question } from 'src/app/models/question';
   templateUrl: './question.component.html',
   styleUrls: ['./question.component.scss'],
 })
-export class QuestionComponent {}
+export class QuestionComponent {
+  @Input() question: Question;
+  
+}

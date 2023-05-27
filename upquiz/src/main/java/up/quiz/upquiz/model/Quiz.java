@@ -39,7 +39,7 @@ public class Quiz {
     @Column(name = "sumofpoints", nullable = true)
     private long sumofpoints;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "iduser", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore

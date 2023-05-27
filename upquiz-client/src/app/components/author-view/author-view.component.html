@@ -1,19 +1,17 @@
 <div class="author-info-panel d-flex flex-column align-items-center justify-content-flex-start">
     <h1>Created by</h1>
     <img id="author-img" src="../../../assets/images/cat.jpg" >
-    <h1>Name</h1>
+    <h1>{{currentUser.firstname}} {{currentUser.surname}}</h1>
     <div class="card-wrapper">
         <mat-card class="quiz-card">
           <mat-card-header>
             <img src="../../../assets/images/cat.jpg" mat-card-avatar />
-            <mat-card-title>Quiz Title</mat-card-title>
+            <mat-card-title>{{currentQuiz.quiztitle}}</mat-card-title>
             <div class="small-rectangle"></div>
           </mat-card-header>
           <mat-card-content>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-              magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-              consequat.
+              {{currentQuiz.quizdescription}}
             </p>
           </mat-card-content>
         </mat-card>

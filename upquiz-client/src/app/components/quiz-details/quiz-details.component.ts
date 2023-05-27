@@ -13,11 +13,9 @@ import { User } from 'src/app/models/user';
   styleUrls: ['./quiz-details.component.scss'],
 })
 export class QuizDetailsComponent implements OnInit {
-  //questions = [1, 2, 3, 4];
-  questions: Question[];
-  @Input() quiz: Quiz;
+  questions: any[] = [Question];
+  quiz: Quiz = new Quiz();
   currentUser: User = new User();
-  showButtons = true;
 
   constructor(
     private quizService: QuizService,
@@ -49,5 +47,24 @@ export class QuizDetailsComponent implements OnInit {
       this.questionService.deleteQuestion(question.idquestion).subscribe();
       location.reload();
     } 
+  }
+
+  addQuestion() {
+    this.questions = [QuizDetailsQuestionComponent, ...this.questions];
+  }
+
+  updateQuizWithQuestions(){
+    for(let question of this.questions){
+      const updatedQuestion = {
+        question: question.question,
+        aanswer: question.aanswer,
+        banswer: question.banswer,
+        canswer: question.canswer,
+        danswer: question.danswer,
+        correctanswer: question.correctanswer,
+      };
+
+      this.questionService.updateQuestion(question.idquestion, updatedQuestion).subscribe((res) => console.log(res));
+    }
   }
 }

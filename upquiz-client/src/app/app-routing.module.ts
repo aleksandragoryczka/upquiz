@@ -23,7 +23,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'start', component: StartComponent },
-  { path: 'student', component: StudentComponent },
+  { path: 'student/:idquiz', component: StudentComponent },
   { path: 'teacher/:id', component: TeacherComponent },
   { path: 'teacher/:id/settings', component: SettingsComponent },
   { path: 'teacher/:id/new-quiz', component: NewquizComponent },
