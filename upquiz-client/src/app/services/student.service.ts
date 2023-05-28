@@ -23,4 +23,8 @@ export class StudentService {
   getResultsByQuizId(id: number): Observable<any>{
     return this.http.get(`${baseUrl}/results/${id}`)
   }
+
+  addStudentResult(idStudent: number, result: number): Observable<any>{
+    return this.http.put(`${baseUrl}/${idStudent}`, result);
+  }
 }

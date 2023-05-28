@@ -28,11 +28,12 @@ public class StudentController {
 
     // Create a new student with result
     @PostMapping("/{idQuiz}")
-    public Student createStudent(@PathVariable long idQuiz, @RequestBody Student student) {
+    public long createStudent(@PathVariable long idQuiz, @RequestBody Student student) {
         Quiz quiz = quizRepository.findById(idQuiz)
                 .orElseThrow(() -> new ResourceNotFoundException("quizRepository", "idQuiz", idQuiz));
         student.setQuiz(quiz);
-        return studentRepository.save(student);
+        studentRepository.save(student);
+        return student.getIdstudent();
     }
 
     //check if quiz with given PIN exists
@@ -54,7 +55,7 @@ public class StudentController {
     }
 
     // Get all students' results for quiz
-    @GetMapping("results/{idQuiz}")
+    @GetMapping("/results/{idQuiz}")
     public List<Student> getAllStudentsForQuiz(@PathVariable long idQuiz) {
         Quiz quiz = quizRepository.findById(idQuiz)
                 .orElseThrow(() -> new ResourceNotFoundException("quizRepository", "idQuiz", idQuiz));
@@ -62,4 +63,10 @@ public class StudentController {
         return studentRepository.findByQuiz(quiz);
     }
 
+    @PutMapping("/{idStudent}")
+    public Student addStudentResult(@PathVariable long idStudent, @RequestBody long studentResult){
+        Student student = studentRepository.findById(idStudent).orElseThrow(() -> new ResourceNotFoundException("studentRepository", "idStudent", idStudent));
+        student.setResult(studentResult);
+        return studentRepository.save(student);
+    }
 }

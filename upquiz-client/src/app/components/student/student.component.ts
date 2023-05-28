@@ -8,6 +8,9 @@ import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
 import { Question } from 'src/app/models/question';
 import { QuestionService } from 'src/app/services/question.service';
+import { StudentService } from 'src/app/services/student.service';
+
+type MarkedAnswers = Record<number, string>;
 
 @Component({
   selector: 'app-student',
@@ -15,23 +18,43 @@ import { QuestionService } from 'src/app/services/question.service';
   styleUrls: ['./student.component.scss'],
 })
 export class StudentComponent implements OnInit{
-  questions = [Question];
+  idstudent: number;
+  questions: Question[];
   currentQuiz: Quiz = new Quiz();
   currentUser: User = new User();
-
+  studentPoints: number = 0;
+  markedAnswers: MarkedAnswers = {};
+  
   constructor(
     private modalService: NgbModal,
     private quizService: QuizService,
     private userService: UserService,
     private questionService: QuestionService,
+    private studentService: StudentService,
     private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-      this.getAllPartssofPageByQuizId(this.route.snapshot.paramMap.get('idquiz'));    
+      this.getAllPartssofPageByQuizId(this.route.snapshot.paramMap.get('idquiz'));  
+      this.route.queryParams.subscribe(params => {
+        this.idstudent = params["idstudent"];
+      })  
   }
 
-  open() {
+  submitAndCheckAnswers() {
+    for(let question of this.questions){
+      if(question.correctanswer === this.markedAnswers[question.idquestion]){
+        this.studentPoints += 1;
+      }
+    }
+    this.studentService.addStudentResult(this.idstudent, this.studentPoints).subscribe((data) => console.log(data));
+
     const modalRef = this.modalService.open(PointsComponent);
+    modalRef.componentInstance.studentPoints = this.studentPoints; //TODO: add getting max points from db.
+    modalRef.componentInstance.maxPoints = this.currentQuiz.sumofpoints;
+  }
+
+  checkAnswer(markedAnswer: string, question: Question){
+    this.markedAnswers[question.idquestion] = markedAnswer;
   }
 
   private getAllPartssofPageByQuizId(idquiz): void {

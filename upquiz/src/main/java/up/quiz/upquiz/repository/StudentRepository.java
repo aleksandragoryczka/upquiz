@@ -8,7 +8,5 @@ import up.quiz.upquiz.model.Quiz;
 import up.quiz.upquiz.model.Student;
 
 public interface StudentRepository extends JpaRepository<Student, Long> {
-
     List<Student> findByQuiz(Quiz quiz);
-
 }

@@ -41,15 +41,13 @@ export class StartComponent {
     };
 
     this.studentService.createStudent(idquiz, newStudent).subscribe(
-        () => {
-          //let currentUrl = `/teacher/${this.route.snapshot.paramMap.get('id')}`; //TODO: replace with userid
+        (data) => {
+          const idstudent = data;
           this.router
             .navigateByUrl('/', { skipLocationChange: true })
-            .then(() => this.router.navigate([`/student/${idquiz}`]));
+            .then(() => this.router.navigate([`/student/${idquiz}`], {queryParams: { idstudent }}));
         }
       );
-
-    //console.log();
   }
 
 }
