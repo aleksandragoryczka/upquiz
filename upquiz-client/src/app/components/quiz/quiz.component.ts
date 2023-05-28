@@ -5,6 +5,7 @@ import { Quiz } from '../../models/quiz';
 import { QuizService } from '../../services/quiz.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StudentService } from 'src/app/services/student.service';
+import { DeletePopupComponent } from '../delete-popup/delete-popup.component';
 
 @Component({
   selector: 'app-quiz',
@@ -28,6 +29,21 @@ export class QuizComponent {
   }
 
   deleteQuiz(idquiz: number):void {
+    const modalRef = this.modalService.open(DeletePopupComponent);
+    modalRef.componentInstance.deleteQuizConfirmationEmitter.subscribe((confirm: boolean) => {
+      if(confirm){
+        this.quizService.delete(idquiz).subscribe(
+          () => {
+            let currentUrl = `/teacher/${this.route.snapshot.paramMap.get('id')}`; //TODO: replace with userid
+            this.router
+              .navigateByUrl('/', { skipLocationChange: true })
+              .then(() => this.router.navigate([currentUrl]));
+          }
+        );
+      }
+    })
+    
+/*
     this.quizService.delete(idquiz).subscribe(
       () => {
         let currentUrl = `/teacher/${this.route.snapshot.paramMap.get('id')}`; //TODO: replace with userid
@@ -35,7 +51,7 @@ export class QuizComponent {
           .navigateByUrl('/', { skipLocationChange: true })
           .then(() => this.router.navigate([currentUrl]));
       }
-    );
+    );*/
   }
 
   getQuizById(idquiz: number): void {

@@ -8,13 +8,13 @@ import { Student } from 'src/app/models/student';
   styleUrls: ['./join.component.scss'],
 })
 export class JoinComponent {
-  @Output() joinStudentEvent: EventEmitter<string[]> = new EventEmitter<string[]>();
+  @Output() joinStudentEvent = new EventEmitter<string[]>();
   name: string;
   surname: string;
   
   constructor(public activeModal: NgbActiveModal) {}
 
-  joinStudent(name: string, surname: string){
+  joinStudent(name: string, surname: string): void{
     this.joinStudentEvent.emit([name, surname]);
     this.activeModal.dismiss('Cross click')
   }

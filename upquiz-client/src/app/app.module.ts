@@ -43,6 +43,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { NewquizComponent } from './components/newquiz/newquiz.component';
 import { CommonModule } from '@angular/common';
+import { DeletePopupComponent } from './components/delete-popup/delete-popup.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { CommonModule } from '@angular/common';
     QuizDetailsQuestionComponent,
     SettingsComponent,
     NewquizComponent,
+    DeletePopupComponent,
   ],
   imports: [
     BrowserModule,

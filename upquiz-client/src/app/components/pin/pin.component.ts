@@ -11,6 +11,5 @@ export class PinComponent {
   @Input() pin: number;
 
   constructor(
-    public activeModal: NgbActiveModal, 
-    private quizService: QuizService) {}
+    public activeModal: NgbActiveModal) {}
 }

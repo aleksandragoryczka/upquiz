@@ -14,7 +14,6 @@ import { ActivatedRoute, Route, Router } from '@angular/router';
 })
 export class StartComponent {
   insertedPin: number;
-  //@Output() joinQuizEvent: EventEmitter<Quiz> = new EventEmitter<Quiz>();
 
   constructor(
     private modalService: NgbModal,

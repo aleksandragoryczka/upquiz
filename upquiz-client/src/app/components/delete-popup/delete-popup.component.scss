@@ -1,0 +1,34 @@
+@import "../../../variables.scss";
+
+.delete-popup-container {
+  height: 300px;
+  background: $light-purple-background;
+  border: 3px solid #47126b;
+  box-shadow: 12px 12px 4px rgba(0, 0, 0, 0.2);
+
+  * {
+    padding: 8px 0 8px 0;
+  }
+
+  .modal-header {
+    border: none;
+  }
+
+  .btn-close {
+    margin-top: 15px;
+    --bs-btn-close-focus-shadow: none;
+  }
+
+  .modal-body{
+    gap: 8vw;
+  }
+
+  .modal-body > button {
+    font-size: 30px;
+    width: 100px;
+    height: 50px;
+    background-color: $button-backgorund-color;
+    color: white;
+    }
+}
+
