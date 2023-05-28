@@ -31,11 +31,11 @@ export class NewquizComponent implements OnInit {
     this.getUser(this.route.snapshot.paramMap.get('id'));
   }
 
-  addQuestion() {
+  addQuestion(): void{
     this.questions = [QuizDetailsQuestionComponent, ...this.questions];
   }
 
-  saveNewQuizWithQuestions(){ 
+  saveNewQuizWithQuestions(): void{ 
     const newQuiz = {
       quiztitle: this.quiz.quiztitle,
       quizdescription: this.quiz.quizdescription,
@@ -44,12 +44,18 @@ export class NewquizComponent implements OnInit {
     this.quizService.addQuiz(this.currentUser.iduser, newQuiz)
     .subscribe(
       (res) => {
-        this.saveQuestion(res.idquiz);
+        let questionsAddedCounter = this.saveQuestion(res.idquiz);
+        this.updateSumOfPoints(res.idquiz, questionsAddedCounter);
       }
     );    
   }
 
-  private saveQuestion(quizId): void{
+  private updateSumOfPoints(quizId: number, questionsAddedCounter: number): void{
+    this.quizService.updateSumOfPointsForQuiz(quizId, questionsAddedCounter).subscribe((res) => console.log(res));
+  }
+
+  private saveQuestion(quizId: number): number{
+    let questionCounter = 0;
     for(let question of this.questions){
       const newQuestion = {
         question: question.question,
@@ -59,10 +65,11 @@ export class NewquizComponent implements OnInit {
         danswer: question.danswer,
         correctanswer: question.correctanswer,
       };
-
-      this.questionService.addQuestionToQuiz(quizId, newQuestion).subscribe((res) => console.log(res)
-      );
+      questionCounter += 1;
+      console.log("qc: " + questionCounter);
+      this.questionService.addQuestionToQuiz(quizId, newQuestion).subscribe();
     }
+    return questionCounter;
   }
 
   private getUser(id): void {

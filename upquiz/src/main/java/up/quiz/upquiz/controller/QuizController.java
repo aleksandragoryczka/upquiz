@@ -78,6 +78,15 @@ public class QuizController {
         return quizRepository.save(quiz);
     }
 
+    // Update sum of points based on questions number - every question 1 point
+    @PutMapping("/updateSumOfPoints/{idQuiz}")
+    public Quiz updateSumOfPoints(@PathVariable long idQuiz, @RequestBody long updatedSumOfPoints){
+        Quiz quiz = quizRepository.findById(idQuiz)
+        .orElseThrow(() -> new ResourceNotFoundException("quizRepository", "idQuiz", idQuiz));
+        quiz.setSumofpoints(updatedSumOfPoints);
+        return quizRepository.save(quiz);
+    }
+
 
     //Generate PIN and add its generation timestamp
     @GetMapping("/pin/{idQuiz}")

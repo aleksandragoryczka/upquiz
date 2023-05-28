@@ -10,6 +10,7 @@
                 <button mat-button (click)="deleteQuiz(quiz.idquiz)"><mat-icon>restore_from_trash</mat-icon>Delete</button>
                 <button mat-button (click)="getQuizById(quiz.idquiz)"><mat-icon>subdirectory_arrow_right</mat-icon>Show</button>
                 <button mat-button (click)="getResultsForQuiz(quiz.idquiz)"><mat-icon>table_chart</mat-icon>Results</button>
+                <button mat-button disabled><mat-icon>functions</mat-icon>Sum fo points: {{quiz.sumofpoints}}</button>
             </mat-toolbar-row>
     </div>
 </div>

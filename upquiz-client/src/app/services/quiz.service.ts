@@ -35,4 +35,8 @@ export class QuizService {
   generateQuizPin(idQuiz: number): Observable<any>{
     return this.http.get(`${baseUrl}/pin/${idQuiz}`);
   }
+
+  updateSumOfPointsForQuiz(idQuiz: number, sumOfPoints: number): Observable<any>{
+    return this.http.put(`${baseUrl}/updateSumOfPoints/${idQuiz}`, sumOfPoints);
+  }
 }
