@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/models/user';
+import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -8,12 +9,14 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
 })
-export class RegisterComponent implements OnInit {
-  constructor(private userService: UserService) {}
+export class RegisterComponent {
+
 
   user: User = new User();
+  errorMessage = '';
 
-  ngOnInit(): void {}
+  constructor(
+    private authService: AuthService) {}
 
   createUser(): void {
     const new_user = {
@@ -23,7 +26,15 @@ export class RegisterComponent implements OnInit {
       password: this.user.password,
     };
 
-    this.userService.createUser(new_user).subscribe();
+    this.authService.register(new_user).subscribe(data => {
+      console.log(data);
+    },
+    err => {
+      this.errorMessage = err.error.message;
+      //this.isSignUpFailed = true;
+    })
+
+    //this.userService.createUser(new_user).subscribe();
   }
 
   /*

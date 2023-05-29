@@ -36,8 +36,6 @@ import { ResultsComponent } from './components/results/results.component';
 import { ResultComponent } from './components/result/result.component';
 import { QuizDetailsComponent } from './components/quiz-details/quiz-details.component';
 import { QuizDetailsQuestionComponent } from './components/quiz-details-question/quiz-details-question.component';
-import { InPlaceEditorComponent } from '@syncfusion/ej2-angular-inplace-editor';
-import { ChangeEventArgs } from '@syncfusion/ej2-buttons';
 import { SettingsComponent } from './components/settings/settings.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
@@ -45,6 +43,8 @@ import { NewquizComponent } from './components/newquiz/newquiz.component';
 import { CommonModule } from '@angular/common';
 import { DeletePopupComponent } from './components/delete-popup/delete-popup.component';
 import { AdminComponent } from './components/admin/admin/admin.component';
+
+import { authInterceptorProviders } from './_helpers/auth.inteceptor';
 
 @NgModule({
   declarations: [
@@ -91,7 +91,7 @@ import { AdminComponent } from './components/admin/admin/admin.component';
     CommonModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [],
+  providers: [authInterceptorProviders],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

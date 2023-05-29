@@ -31,7 +31,7 @@ import up.quiz.upquiz.security.payloads.response.JwtResponse;
 import up.quiz.upquiz.security.payloads.response.MessageResponse;
 import up.quiz.upquiz.security.services.UserDetailsImpl;
 
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -79,19 +79,19 @@ public class AuthController {
 
         if(strRoles == null){
             Role userRole = roleRepository.findByName(ERole.ROLE_USER)
-                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                .orElseThrow(() -> new RuntimeException("Error: Role is not found. ttttttttttttttt"));
             roles.add(userRole);
         }else{
             strRoles.forEach(role -> {
                 switch(role){
                     case "admin":
                         Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
-                            .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                            .orElseThrow(() -> new RuntimeException("Error: Role is not found. 222222222222"));
                         roles.add(adminRole);
                         break;
                     default:
                         Role userRole = roleRepository.findByName(ERole.ROLE_USER)
-                            .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                            .orElseThrow(() -> new RuntimeException("Error: Role is not found. 333333333333333"));
                         roles.add(userRole);
                 }
             });
