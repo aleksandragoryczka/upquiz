@@ -44,6 +44,7 @@ import { FormsModule } from '@angular/forms';
 import { NewquizComponent } from './components/newquiz/newquiz.component';
 import { CommonModule } from '@angular/common';
 import { DeletePopupComponent } from './components/delete-popup/delete-popup.component';
+import { AdminComponent } from './components/admin/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import { DeletePopupComponent } from './components/delete-popup/delete-popup.com
     SettingsComponent,
     NewquizComponent,
     DeletePopupComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,

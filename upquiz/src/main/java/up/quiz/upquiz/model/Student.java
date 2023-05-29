@@ -27,7 +27,6 @@ public class Student {
     @Column(name = "surname", nullable = false)
     private String surname;
 
-    // TODO: is nullable?
     @Column(name = "result")
     private long result;
 

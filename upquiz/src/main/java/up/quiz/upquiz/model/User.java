@@ -1,13 +1,14 @@
 package up.quiz.upquiz.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name = "users")
 public class User {
@@ -31,4 +32,14 @@ public class User {
     @Column(name = "photo", nullable = true, columnDefinition = "BYTEA")
     private byte[] photo;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name="iduser"), inverseJoinColumns = @JoinColumn(name="idrole"))
+    private Set<Role> roles = new HashSet<>();
+
+    public User(String firstname, String surname, String email, String password){
+        this.firstname = firstname;
+        this.surname = surname;
+        this.email = email;
+        this.password = password;
+    }
 }

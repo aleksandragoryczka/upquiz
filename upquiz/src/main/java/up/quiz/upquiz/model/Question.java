@@ -1,7 +1,5 @@
 package up.quiz.upquiz.model;
 
-import java.util.Optional;
-
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 

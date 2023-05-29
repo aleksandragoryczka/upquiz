@@ -33,17 +33,4 @@ export class TeacherViewComponent implements OnInit {
       );
     });
   }
-  /*
-  getUser(id): void {
-    //TODO: add getting user by id
-    this.userService.get(1).subscribe(
-      (data) => {
-        this.currentUser = data;
-        console.log(data);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-  }*/
 }
