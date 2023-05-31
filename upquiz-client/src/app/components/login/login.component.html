@@ -4,12 +4,17 @@
         <h1>Log in</h1>
         <mat-form-field appearance="fill">
             <mat-label>Enter your email</mat-label>
-            <input matInput>
+            <input matInput
+            [(ngModel)]="form.email">
         </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label>Password</mat-label>
-            <input matInput>
+            <input matInput
+            [(ngModel)]="form.password">
         </mat-form-field>
         <button mat-raised-button (click)="login()">Log in</button>
+    </div>
+    <div class="alert alert-success" *ngIf="isLoggedIn">
+        Logged in as {{ roles }}.
     </div>
 </div>

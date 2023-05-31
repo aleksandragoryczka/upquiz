@@ -4,6 +4,7 @@ import { Quiz } from 'src/app/models/quiz';
 import { User } from 'src/app/models/user';
 import { QuizService } from 'src/app/services/quiz.service';
 import { UserService } from 'src/app/services/user.service';
+import { TokenStorageService } from '../../services/token-storage.service';
 
 @Component({
   selector: 'app-teacher',
@@ -13,37 +14,54 @@ import { UserService } from 'src/app/services/user.service';
 export class TeacherComponent implements OnInit {
   constructor(
     private quizService: QuizService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private tokenStorageService: TokenStorageService,
+    private userService: UserService
   ) {}
   quizzes: Quiz[];
-  showButtons = true;
-  currentUser: User = new User();
+  currentUser: User;
 
   ngOnInit(): void {
-    this.route.params.subscribe((params) => {
-      this.currentUser.iduser = parseInt(params['id']);
-      this.quizService
-        .getAllQuizzesForUser(this.currentUser.iduser)
+    //const user = this.tokenStorageService.getUser();
+    //console.log("user id: " + user.id)
+    /*this.getUser(user.id);
+    this.quizService
+        .getAllQuizzesForUser(user.id)
+        .subscribe((data) => {
+          this.quizzes = data;
+        });*/
+
+      const user = this.tokenStorageService.getUser();
+      //this.getUser(user.id);
+      console.log(user)
+
+
+      this.userService.get(user.id).subscribe((data) => {
+        this.currentUser = data;
+        console.log("current user: " + this.currentUser.iduser)
+        this.quizService
+        .getAllQuizzesForUser(user.id)
         .subscribe((data) => {
           this.quizzes = data;
         });
-    });
+      })
+      //this.currentUser = this.getUser(user.id);
+      //console.log("current user: " + this.currentUser.iduser)
+
+      //this.route.params.subscribe((params) => {
+      //this.currentUser.iduser = parseInt(params['id']);
+      
     //console.log(this.userid);
     //const userid = 1; // TODO: Replace with the actual user ID
   }
-  /*
-  currentUser: User;
-
-  getUser(id): void {
-    //TODO: add getting user by id
-    this.userService.get(1).subscribe(
+/*
+  getUser(id){
+    return this.userService.get(id).subscribe(
       (data) => {
-        this.currentUser = data;
-        console.log(data);
+        return data;
+        //console.log(data);
+        //console.log("current: " + this.currentUser.email)
       },
-      (error) => {
-        console.log(error);
-      }
     );
   }*/
 
