@@ -15,6 +15,7 @@ export class ResultsComponent implements OnInit {
   currentUser: User = new User();
   @Input() quiz: Quiz;
   results = [Student];
+  sumOfPoints = 0
 
   constructor(private studentService: StudentService,
     private quizService: QuizService,
@@ -35,6 +36,7 @@ export class ResultsComponent implements OnInit {
     this.quizService.getQuizById(idquiz).subscribe(
       (data) => {
         this.quiz = data;
+        this.sumOfPoints = this.quiz.sumofpoints
       },
       (error) => console.log(error)
     );

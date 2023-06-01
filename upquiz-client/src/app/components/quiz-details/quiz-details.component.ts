@@ -6,6 +6,7 @@ import { QuizDetailsQuestionComponent } from '../quiz-details-question/quiz-deta
 import { Question } from 'src/app/models/question';
 import { QuestionService } from 'src/app/services/question.service';
 import { User } from 'src/app/models/user';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-quiz-details',
@@ -15,18 +16,24 @@ import { User } from 'src/app/models/user';
 export class QuizDetailsComponent implements OnInit {
   questions: any[] = [Question];
   quiz: Quiz = new Quiz();
-  currentUser: User = new User();
+  currentUser: User;
 
   constructor(
     private quizService: QuizService,
     private questionService: QuestionService,
     private route: ActivatedRoute,
+    private userService: UserService,
 
   ) {}
 
   ngOnInit(): void {
     const idquiz = this.route.snapshot.paramMap.get('idquiz');
-
+    this.userService.user$.subscribe((res) => {
+      if(res){
+        this.currentUser = res
+      }
+      })
+    //const idquiz = this.quiz.idquiz;
     this.getQuizById(idquiz);
     this.questionService.getAllQuestionsForQuiz(idquiz).subscribe((data) => {
       this.questions = data;
@@ -50,7 +57,7 @@ export class QuizDetailsComponent implements OnInit {
   }
 
   addQuestion() {
-    this.questions = [QuizDetailsQuestionComponent, ...this.questions];
+    this.questions = [new QuizDetailsQuestionComponent, ...this.questions];
   }
 
   updateQuizWithQuestions(){
@@ -64,7 +71,12 @@ export class QuizDetailsComponent implements OnInit {
         correctanswer: question.correctanswer,
       };
 
-      this.questionService.updateQuestion(question.idquestion, updatedQuestion).subscribe((res) => console.log(res));
+      console.log(updatedQuestion);
+      if(question.idquestion){
+        this.questionService.updateQuestion(question.idquestion, updatedQuestion).subscribe((res) => console.log(res));
+      }else{
+        this.questionService.addQuestionToQuiz(this.quiz.idquiz, updatedQuestion).subscribe((res) => console.log(res))
+      }
     }
   }
 }

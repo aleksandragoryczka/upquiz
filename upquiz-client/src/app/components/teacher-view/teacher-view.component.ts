@@ -21,6 +21,14 @@ export class TeacherViewComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    console.log(this.currentUser)
+    this.userService.user$.subscribe((res) => {
+      if(res){
+        this.currentUser = res
+      }
+    })
+  }
+    /*
     this.route.params.subscribe((params) => {
       this.currentUser.iduser = params['id'];
       //console.log(this.currentUser.iduser);
@@ -35,5 +43,5 @@ export class TeacherViewComponent implements OnInit {
         }
       );
     });
-  }
+  }*/
 }

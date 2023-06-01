@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { Quiz } from '../models/quiz';
 import { User } from '../models/user';
 
@@ -10,6 +10,10 @@ const baseUrl = 'http://localhost:8080/api/quizzes';
   providedIn: 'root',
 })
 export class QuizService {
+  private quiz = new BehaviorSubject<Quiz | undefined>(undefined);
+  public quiz$ = this.quiz.asObservable();
+
+
   constructor(private http: HttpClient) {}
 
   getAllQuizzesForUser(id: number | undefined): Observable<any> {
@@ -21,7 +25,11 @@ export class QuizService {
   }
 
   getQuizById(id: number): Observable<any> {
-    return this.http.get(`${baseUrl}/quiz/${id}`);
+    return this.http.get<Quiz>(`${baseUrl}/quiz/${id}`)
+      .pipe(tap(
+        (quiz: Quiz) => {
+          this.quiz.next(quiz)
+        }));
   }
 
   getUserForQuiz(idQuiz: number): Observable<any>{

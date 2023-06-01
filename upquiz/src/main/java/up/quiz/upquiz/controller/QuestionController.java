@@ -38,6 +38,8 @@ public class QuestionController {
         Quiz quiz = quizRepository.findById(idQuiz)
                 .orElseThrow(() -> new ResourceNotFoundException("quizRepository", "idQuiz", idQuiz));
         newQuestion.setQuiz(quiz);
+        quiz.setSumofpoints(quiz.getSumofpoints() + 1);
+        quizRepository.save(quiz);
         return questionRepository.save(newQuestion);
     }
 

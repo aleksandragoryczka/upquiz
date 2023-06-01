@@ -21,14 +21,15 @@ export class TeacherComponent implements OnInit {
     private route: ActivatedRoute,
     private tokenStorageService: TokenStorageService,
     private userService: UserService
-  ) {this.userService.user$.subscribe((res) => {
-    if(res) {
-      this.currentUser = res
-    }}
-  )}
+  ) {}
   
 
   ngOnInit(): void {
+    this.userService.user$.subscribe((res) => {
+      if(res) {
+        this.currentUser = res
+      }}
+    )
     //this.tokenStorageService.getToken();
     //console.log("user id: " + user.id)
     /*this.getUser(user.id);
@@ -42,19 +43,15 @@ export class TeacherComponent implements OnInit {
       //this.getUser(user.id);
       //console.log(user)
       if(this.userService.isUserAuthenticated){
-            console.log("current user: " + this.currentUser?.iduser)
+            //console.log("current user: " + this.currentUser?.iduser)
             this.quizService
             .getAllQuizzesForUser(this.currentUser?.iduser)
             .subscribe((data) => {
               this.quizzes = data;
             });
-      }else{
-        console.log("NIEAUTORYZOWANY!!!!!!!!!")
       }
 
-      
-
-      
+           
 
       
       //this.currentUser = this.getUser(user.id);

@@ -32,13 +32,12 @@ export class LoginComponent implements OnInit{
   login() {
     this.userService.login(this.form).subscribe(
       loggedIn => {
-        console.log(loggedIn);
+        //console.log(loggedIn);
         if(loggedIn){
           this.userService.user$.subscribe(res => {
             if(res?.iduser){
               //let currentUrl = `/teacher/${res.iduser}`;
               this.router.navigate([`/teacher/${res.iduser}`])
-              this.tostr.error("@@@@")
                   //.navigateByUrl('/', { skipLocationChange: true })
                   //.then(() => this.router.navigate([currentUrl]));
             }

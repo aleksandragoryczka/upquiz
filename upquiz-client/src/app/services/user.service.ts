@@ -71,11 +71,11 @@ export class UserService {
 
   private setUser(auth: AuthenticatedResponse): void{
     if(!auth) return;
-    const user: User = {
-      iduser: auth.id
-    }
-    
-    this.user.next(user);
+    this.get(auth.id).subscribe((res) => {
+      const user = res;
+      console.log(user)
+      //this.user.next(user);
+    })
   }
   
 }
