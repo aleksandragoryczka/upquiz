@@ -23,10 +23,10 @@ export class LoginComponent implements OnInit{
     private tostr: ToastrService) { }
 
   ngOnInit() {
-    if (this.tokenStorage.getToken()) {
-      this.isLoggedIn = true;
+    //if (this.tokenStorage.getToken()) {
+      //this.isLoggedIn = true;
       //this.roles = this.tokenStorage.getUser().roles;
-    }
+    //}
   }
 
   login() {
@@ -66,9 +66,5 @@ export class LoginComponent implements OnInit{
         this.isLoginFailed = true;*/
       }
     );
-  }
-
-  reloadPage() {
-    window.location.reload();
   }
 }

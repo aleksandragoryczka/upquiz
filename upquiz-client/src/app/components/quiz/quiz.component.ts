@@ -8,6 +8,7 @@ import { StudentService } from 'src/app/services/student.service';
 import { DeletePopupComponent } from '../delete-popup/delete-popup.component';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/user';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-quiz',
@@ -24,7 +25,8 @@ export class QuizComponent implements OnInit{
     private studentService: StudentService,
     private route: ActivatedRoute,
     private router: Router,
-    private userService: UserService
+    private userService: UserService,
+    private toastr: ToastrService
   ) {}
 
 
@@ -48,6 +50,7 @@ export class QuizComponent implements OnInit{
         this.quizService.delete(idquiz).subscribe(
           () => {
             let currentUrl = `/teacher/${this.currentUser.iduser}`; //TODO: replace with userid
+            this.toastr.success("Successfully deleted quiz")
             this.router
               .navigateByUrl('/', { skipLocationChange: true })
               .then(() => this.router.navigate([currentUrl]));

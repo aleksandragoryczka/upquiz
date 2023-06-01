@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -17,7 +18,8 @@ export class RegisterComponent {
 
   constructor(
     private userService: UserService,
-    private router: Router) {}
+    private router: Router,
+    private toastr: ToastrService) {}
 
   createUser(): void {
     const new_user = {
@@ -29,7 +31,10 @@ export class RegisterComponent {
 
     this.userService.register(new_user).subscribe(res => {
       if(res){
+        this.toastr.success("Succesfully registered. Now log in with your credentials")
         this.router.navigate([`/login`])
+      }else{
+        this.toastr.error("User with that email already exists!");
       }
     },
     err => {

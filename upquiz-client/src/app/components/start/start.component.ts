@@ -6,6 +6,7 @@ import { Student } from 'src/app/models/student';
 import { QuizService } from 'src/app/services/quiz.service';
 import { Quiz } from 'src/app/models/quiz';
 import { ActivatedRoute, Route, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-start',
@@ -18,19 +19,23 @@ export class StartComponent {
   constructor(
     private modalService: NgbModal,
     private studentService: StudentService,
-    private quizService: QuizService,
-    private route: ActivatedRoute,
-    private router: Router) {}
+    private router: Router,
+    private toastr: ToastrService) {}
 
   open() {
     if(this.insertedPin >= 100000 && this.insertedPin <= 999999){
     this.studentService.checkInsertedPin(this.insertedPin).subscribe(
-      (res) => { //TODO: IT HAS TO RETURN QUIZ TO USER CAN JOIN QUUIZ WITH DANYM QUIZID
+      (res) => { 
         if(res != null){
           const modalRef = this.modalService.open(JoinComponent); 
           modalRef.componentInstance.joinStudentEvent.subscribe(([firstname, surname]) => {this.createStudent(firstname, surname, res.idquiz)})
-        }})
-  }
+      }else{
+        this.toastr.error("Wrong PIN. Try again")
+      }
+    })
+    }else{
+      this.toastr.error("PIN must contains 6 digits. Try again")
+    }
   }
 
   createStudent(firstname: string, surname: string, idquiz: number){

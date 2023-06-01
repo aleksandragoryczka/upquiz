@@ -43,7 +43,6 @@ import { CommonModule } from '@angular/common';
 import { DeletePopupComponent } from './components/delete-popup/delete-popup.component';
 import { AdminComponent } from './components/admin/admin/admin.component';
 import { JwtModule } from '@auth0/angular-jwt';
-import { ErrorInterceptor } from './_helpers/error.inteceptor';
 import { ToastrModule } from 'ngx-toastr';
 
 export function tokenGetter() {
@@ -110,7 +109,7 @@ export function tokenGetter() {
     }),
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

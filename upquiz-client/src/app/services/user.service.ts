@@ -19,12 +19,12 @@ export class UserService {
     private http: HttpClient,
     private tokenStorageService: TokenStorageService,
     private jwtHelper: JwtHelperService) {
-      const token = this.tokenStorageService.getToken();
-      if(!!token && !this.jwtHelper.isTokenExpired(token)){
-        this.setUser({token: token} as AuthenticatedResponse)
-      }else{
-        this.tokenStorageService.clearToken();
-      }
+      //const token = this.tokenStorageService.getToken();
+     // if(!!token && !this.jwtHelper.isTokenExpired(token)){
+     //   this.setUser({token: token} as AuthenticatedResponse)
+     // }else{
+      //  this.tokenStorageService.clearToken();
+      //}
     }
     
   login(credentials): Observable<boolean> {

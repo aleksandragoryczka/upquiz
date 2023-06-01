@@ -67,7 +67,7 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<?> regiserUser(@Valid @RequestBody RegisterRequest registerRequest){
         if(userRepository.existsByEmail(registerRequest.getEmail())){
-            return ResponseEntity.badRequest().body(new MessageResponse("Error: User with that email already existed!"));
+            return ResponseEntity.ok(false);
         }
 
         //Create new user's account
@@ -79,19 +79,19 @@ public class AuthController {
 
         if(strRoles == null){
             Role userRole = roleRepository.findByName(ERole.ROLE_USER)
-                .orElseThrow(() -> new RuntimeException("Error: Role is not found. ttttttttttttttt"));
+                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
             roles.add(userRole);
         }else{
             strRoles.forEach(role -> {
                 switch(role){
                     case "admin":
                         Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
-                            .orElseThrow(() -> new RuntimeException("Error: Role is not found. 222222222222"));
+                            .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
                         roles.add(adminRole);
                         break;
                     default:
                         Role userRole = roleRepository.findByName(ERole.ROLE_USER)
-                            .orElseThrow(() -> new RuntimeException("Error: Role is not found. 333333333333333"));
+                            .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
                         roles.add(userRole);
                 }
             });
