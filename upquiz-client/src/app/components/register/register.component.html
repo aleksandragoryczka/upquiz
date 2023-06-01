@@ -3,13 +3,17 @@
     <h1>Register</h1>
     <mat-form-field appearance="fill">
         <mat-label>Name</mat-label>
-        <input matInput           
+        <input matInput 
+          formControlName="firstname"  
+          id="firstname"        
           type="text"
-          class="form-control"
-          id="first_name"
           required
           [(ngModel)]="user.firstname"
           name="first_name">
+          <mat-error *ngIf="formControls['firstname'].errors">
+            <span *ngIf="formControls['firstname'].errors['required']">Name is required.</span>
+            <span *ngIf="formControls['firstname'].errors['pattern']">Name should contain only letters.</span>
+          </mat-error>
     </mat-form-field>
     <mat-form-field appearance="fill">
         <mat-label>Surname</mat-label>

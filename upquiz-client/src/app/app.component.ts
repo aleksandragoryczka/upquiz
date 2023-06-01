@@ -8,19 +8,4 @@ import { TokenStorageService } from './services/token-storage.service';
 })
 export class AppComponent {
   title = 'upquiz-client';
-/*
-  isLoggedIn = false;
-  private roles: string[];
-
-
-  constructor(private tokenStorageService: TokenStorageService){}
-
-  ngOnInit(): void {
-    this.isLoggedIn = !!this.tokenStorageService.getToken();
-
-    if(this.isLoggedIn){
-      const user = this.tokenStorageService.getUser();
-      this.roles = user.roles;
-    }
-  }  */
 }

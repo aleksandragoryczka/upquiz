@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { QuizService } from 'src/app/services/quiz.service';
 
 @Component({
   selector: 'app-pin',

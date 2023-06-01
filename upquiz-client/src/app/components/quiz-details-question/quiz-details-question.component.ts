@@ -1,8 +1,5 @@
-import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
-import { InPlaceEditorComponent } from '@syncfusion/ej2-angular-inplace-editor';
-import { ChangeEventArgs } from '@syncfusion/ej2-buttons';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Question } from 'src/app/models/question';
-import { QuestionService } from 'src/app/services/question.service';
 
 @Component({
   selector: 'app-quiz-details-question',

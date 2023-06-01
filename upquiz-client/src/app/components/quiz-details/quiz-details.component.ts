@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Quiz } from 'src/app/models/quiz';
 import { QuizService } from 'src/app/services/quiz.service';
@@ -33,7 +33,6 @@ export class QuizDetailsComponent implements OnInit {
         this.currentUser = res
       }
       })
-    //const idquiz = this.quiz.idquiz;
     this.getQuizById(idquiz);
     this.questionService.getAllQuestionsForQuiz(idquiz).subscribe((data) => {
       this.questions = data;

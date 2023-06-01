@@ -49,7 +49,7 @@ export class StudentComponent implements OnInit{
     this.studentService.addStudentResult(this.idstudent, this.studentPoints).subscribe((data) => console.log(data));
 
     const modalRef = this.modalService.open(PointsComponent);
-    modalRef.componentInstance.studentPoints = this.studentPoints; //TODO: add getting max points from db.
+    modalRef.componentInstance.studentPoints = this.studentPoints; 
     modalRef.componentInstance.maxPoints = this.currentQuiz.sumofpoints;
   }
 

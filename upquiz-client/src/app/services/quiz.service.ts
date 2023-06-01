@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { Quiz } from '../models/quiz';
-import { User } from '../models/user';
 
 const baseUrl = 'http://localhost:8080/api/quizzes';
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, NgModel, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
@@ -10,16 +10,31 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
 })
-export class RegisterComponent {
-
-
+export class RegisterComponent implements OnInit{
   user: User = new User();
   errorMessage = '';
+  userForm: FormGroup;
 
   constructor(
     private userService: UserService,
     private router: Router,
-    private toastr: ToastrService) {}
+    private toastr: ToastrService,
+    private formBuilder: FormBuilder) {}
+
+
+  ngOnInit(): void {
+    this.userForm = this.formBuilder.group({
+      firstname: ['', [Validators.required, Validators.pattern('^[a-zA-Z]+$')]],
+      surname: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
+      confirmPassword: ['', Validators.required]
+    });
+  }
+
+  get formControls() {
+    return this.userForm.controls;
+  }
 
   createUser(): void {
     const new_user = {
@@ -52,4 +67,5 @@ export class RegisterComponent {
 
     return this.email.hasError('email') ? 'Not a valid email' : '';
   }*/
-}
+
+  }

@@ -18,14 +18,7 @@ export class UserService {
   constructor(
     private http: HttpClient,
     private tokenStorageService: TokenStorageService,
-    private jwtHelper: JwtHelperService) {
-      //const token = this.tokenStorageService.getToken();
-     // if(!!token && !this.jwtHelper.isTokenExpired(token)){
-     //   this.setUser({token: token} as AuthenticatedResponse)
-     // }else{
-      //  this.tokenStorageService.clearToken();
-      //}
-    }
+    private jwtHelper: JwtHelperService){}
     
   login(credentials): Observable<boolean> {
     return this.http.post<AuthenticatedResponse>(`${baseUrl}/auth/signin`, {
@@ -73,8 +66,6 @@ export class UserService {
     if(!auth) return;
     this.get(auth.id).subscribe((res) => {
       const user = res;
-      console.log(user)
-      //this.user.next(user);
     })
   }
   
