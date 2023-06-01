@@ -18,6 +18,8 @@ import up.quiz.upquiz.security.jwt.AuthEntryPointJwt;
 import up.quiz.upquiz.security.jwt.AuthTokenFilter;
 import up.quiz.upquiz.security.services.UserDetailsServiceImpl;
 
+import static org.springframework.security.config.Customizer.withDefaults;
+
 
 @Configuration
 @EnableMethodSecurity
@@ -55,16 +57,13 @@ public class WebSecurityConfig {
   
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-    http.csrf(csrf -> csrf.disable())
-        .exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler))
-        .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-        .authorizeHttpRequests(auth -> 
-          auth.requestMatchers("/api/auth/**").permitAll()
-              .requestMatchers("/api/users/**").permitAll()
-              .requestMatchers("/api/quizzes/**").permitAll()
-              .requestMatchers("/api/questions/**").permitAll()
-              .anyRequest().authenticated()
-        );
+      http.cors(withDefaults()).csrf(csrf -> csrf.disable())
+              .exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler))
+              .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+              .authorizeHttpRequests(auth ->
+                      auth.requestMatchers("/api/auth/**").permitAll()
+                      .anyRequest().authenticated()
+              );
     
     http.authenticationProvider(authenticationProvider());
 

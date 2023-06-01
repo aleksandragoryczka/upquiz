@@ -22,10 +22,10 @@ export class TeacherViewComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
-      //this.currentUser.iduser = params['id'];
+      this.currentUser.iduser = params['id'];
       //console.log(this.currentUser.iduser);
-      const user =this.tokenStorageService.getUser();
-      this.userService.get(user.id).subscribe(
+      //const user =this.tokenStorageService.getUser();
+      this.userService.get(this.currentUser.iduser).subscribe(
         (data) => {
           this.currentUser = data;
           console.log(data);

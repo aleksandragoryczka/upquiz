@@ -55,6 +55,7 @@ export class QuizComponent {
   }
 
   getQuizById(idquiz: number): void {
+    console.log("id: " + idquiz)
     this.quizService.getQuizById(idquiz).subscribe(
       (data) => {
         this.quiz = data;
@@ -66,9 +67,11 @@ export class QuizComponent {
   }
 
   getResultsForQuiz(idquiz: number): void{
+    console.log(idquiz)
     this.studentService.getResultsByQuizId(idquiz).subscribe(
       () => {
-        let iduser = this.route.snapshot.paramMap.get('id');
+        let iduser = this.route.snapshot.paramMap.get('id')
+        console.log(iduser);
         this.router.navigate(['/' + iduser + '/results/' + idquiz]);
       },
     );

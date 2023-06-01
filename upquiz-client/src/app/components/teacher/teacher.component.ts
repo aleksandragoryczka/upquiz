@@ -12,17 +12,24 @@ import { TokenStorageService } from '../../services/token-storage.service';
   styleUrls: ['./teacher.component.scss'],
 })
 export class TeacherComponent implements OnInit {
+  quizzes: Quiz[];
+  currentUser: User = new User();
+  iduser: number | undefined;
+
   constructor(
     private quizService: QuizService,
     private route: ActivatedRoute,
     private tokenStorageService: TokenStorageService,
     private userService: UserService
-  ) {}
-  quizzes: Quiz[];
-  currentUser: User;
+  ) {this.userService.user$.subscribe((res) => {
+    if(res) {
+      this.currentUser = res
+    }}
+  )}
+  
 
   ngOnInit(): void {
-    //const user = this.tokenStorageService.getUser();
+    //this.tokenStorageService.getToken();
     //console.log("user id: " + user.id)
     /*this.getUser(user.id);
     this.quizService
@@ -31,20 +38,25 @@ export class TeacherComponent implements OnInit {
           this.quizzes = data;
         });*/
 
-      const user = this.tokenStorageService.getUser();
+      //const user = this.tokenStorageService.getUser();
       //this.getUser(user.id);
-      console.log(user)
+      //console.log(user)
+      if(this.userService.isUserAuthenticated){
+            console.log("current user: " + this.currentUser?.iduser)
+            this.quizService
+            .getAllQuizzesForUser(this.currentUser?.iduser)
+            .subscribe((data) => {
+              this.quizzes = data;
+            });
+      }else{
+        console.log("NIEAUTORYZOWANY!!!!!!!!!")
+      }
 
+      
 
-      this.userService.get(user.id).subscribe((data) => {
-        this.currentUser = data;
-        console.log("current user: " + this.currentUser.iduser)
-        this.quizService
-        .getAllQuizzesForUser(user.id)
-        .subscribe((data) => {
-          this.quizzes = data;
-        });
-      })
+      
+
+      
       //this.currentUser = this.getUser(user.id);
       //console.log("current user: " + this.currentUser.iduser)
 

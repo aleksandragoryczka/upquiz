@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
-import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -16,7 +16,8 @@ export class RegisterComponent {
   errorMessage = '';
 
   constructor(
-    private authService: AuthService) {}
+    private userService: UserService,
+    private router: Router) {}
 
   createUser(): void {
     const new_user = {
@@ -26,15 +27,14 @@ export class RegisterComponent {
       password: this.user.password,
     };
 
-    this.authService.register(new_user).subscribe(data => {
-      console.log(data);
+    this.userService.register(new_user).subscribe(res => {
+      if(res){
+        this.router.navigate([`/login`])
+      }
     },
     err => {
       this.errorMessage = err.error.message;
-      //this.isSignUpFailed = true;
     })
-
-    //this.userService.createUser(new_user).subscribe();
   }
 
   /*

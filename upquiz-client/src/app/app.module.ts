@@ -4,7 +4,6 @@ import {
   NO_ERRORS_SCHEMA,
 } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -37,14 +36,19 @@ import { ResultComponent } from './components/result/result.component';
 import { QuizDetailsComponent } from './components/quiz-details/quiz-details.component';
 import { QuizDetailsQuestionComponent } from './components/quiz-details-question/quiz-details-question.component';
 import { SettingsComponent } from './components/settings/settings.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { NewquizComponent } from './components/newquiz/newquiz.component';
 import { CommonModule } from '@angular/common';
 import { DeletePopupComponent } from './components/delete-popup/delete-popup.component';
 import { AdminComponent } from './components/admin/admin/admin.component';
+import { JwtModule } from '@auth0/angular-jwt';
+import { ErrorInterceptor } from './_helpers/error.inteceptor';
+import { ToastrModule } from 'ngx-toastr';
 
-import { authInterceptorProviders } from './_helpers/auth.inteceptor';
+export function tokenGetter() {
+  return localStorage.getItem('access_token');
+}
 
 @NgModule({
   declarations: [
@@ -89,9 +93,24 @@ import { authInterceptorProviders } from './_helpers/auth.inteceptor';
     HttpClientModule,
     FormsModule,
     CommonModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: [''],
+        disallowedRoutes: [],
+      },
+    }),
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      closeButton: true,
+      preventDuplicates: true,
+      resetTimeoutOnDuplicate: true,
+      progressBar: true,
+      progressAnimation: 'decreasing',
+    }),
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [authInterceptorProviders],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

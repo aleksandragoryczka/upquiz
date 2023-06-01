@@ -1,15 +1,29 @@
 import { Injectable } from '@angular/core';
+import { AuthenticatedResponse } from '../models/authenticated-response.model';
 
-const TOKEN_KEY = 'auth-token';
-const USER_KEY = 'auth-user';
+//const TOKEN_KEY = 'auth-token';
+//const USER_KEY = 'auth-user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TokenStorageService {
+  private static tokenFieldName = 'access_token';
 
-  constructor() { }
+  constructor() {}
 
+  public setToken(authResponse: AuthenticatedResponse): void{
+    localStorage.setItem(TokenStorageService.tokenFieldName, authResponse.token);
+  }
+
+  public getToken(): string| null{
+    return localStorage.getItem(TokenStorageService.tokenFieldName);
+  }
+
+  public clearToken(): void{
+    localStorage.removeItem(TokenStorageService.tokenFieldName);
+  }
+/*
   signOut() {
     window.sessionStorage.clear();
   }
@@ -30,5 +44,5 @@ export class TokenStorageService {
 
   public getUser() {
     return JSON.parse(sessionStorage.getItem(USER_KEY) || '');
-  }
+  }*/
 }
