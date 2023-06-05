@@ -27,9 +27,6 @@ public class Quiz {
     @Column(name = "quizdescription", nullable = false, columnDefinition = "TEXT")
     private String quizdescription;
 
-    @Column(name = "quizicon", nullable = true, columnDefinition = "BYTEA")
-    private byte[] quizicon;
-
     @Column(name = "pin", nullable = true)
     private int pin;
 

@@ -6,7 +6,5 @@ export class Quiz {
   quiztitle: string;
   quizdescription: string;
   sumofpoints: number;
-  quizicon: null;
   iduser: User;
-
 }

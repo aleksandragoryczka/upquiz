@@ -3,59 +3,31 @@
         <app-TeacherView [currentUser]="currentUser"></app-TeacherView>
     </div>
     <div class="settings-container d-flex flex-row align-items-center justify-content-around">
-        <div class="d-flex flex-column align-items-center">
-            <input type="file" (change)="onFileSelected($event)" accept="image/*">
-            <img id="teacher-img" src="../../../assets/images/cat.jpg">
-        <!--    <button mat-raised-button class="upload-button" (click)="uploadAvatar()">Upload new picture</button> -->
-        </div>  
         <div class="input-container d-flex flex-column justify-content-flex-start align-items-center">
             <img src="../../../assets/images/questionmarkicon.svg">
+            <form [formGroup]="settingsForm" (ngSubmit)="updateUser()">
             <mat-form-field appearance="fill">
                 <mat-label>New name</mat-label>
-                <input matInput
-                type="text"
-                class="form-control"
-                id="first_name"
-                required
-                [(ngModel)]="currentUser.firstname"
-                name="first_name">
+                <input matInput formControlName="firstname" type="text" id="first_name">
             </mat-form-field>
             <mat-form-field appearance="fill">
                 <mat-label>New surname</mat-label>
-                <input matInput
-                type="text"          
-                class="form-control"
-                id="surname"
-                required
-                [(ngModel)]="currentUser.surname"
-                name="surname">
+                <input matInput formControlName="surname" type="text" id="surname">
             </mat-form-field>
             <mat-form-field appearance="fill">
                 <mat-label>Old password</mat-label>
-                <input matInput
-                type="password"          
-                class="form-control"
-                id="password"
-                required
-                name="password">
+                <input matInput formControlName="oldPassword" type="password" id="password">
             </mat-form-field>
             <mat-form-field appearance="fill">
                 <mat-label>New password</mat-label>
-                <input matInput
-                type="password"          
-                class="form-control"
-                id="password"
-                required
-                [(ngModel)]="currentUser.password"
-                name="password">
+                <input matInput formControlName="newPassword" type="password" id="newPassword">
             </mat-form-field>
             <mat-form-field appearance="fill">
                 <mat-label>Repeat new password</mat-label>
-                <input matInput
-                type="password"      
-                required>
+                <input matInput formControlName="confirmPassword" type="password">
             </mat-form-field>
-            <button mat-raised-button routerLink="/teacher/{{currentUser.iduser}}" (click)="updateUser()">Save</button>
+            <button mat-raised-button routerLink="/teacher/{{currentUser.iduser}}" type="submit">Save</button>
+        </form>
         </div>
     </div>
 </div>

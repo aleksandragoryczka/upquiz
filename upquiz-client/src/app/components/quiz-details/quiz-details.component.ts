@@ -53,7 +53,6 @@ export class QuizDetailsComponent implements OnInit {
     this.questionService.deleteQuestion(question.idquestion).subscribe(
       () => {
         let currentUrl = `${this.currentUser.iduser}/quiz-details/${this.idquiz}`;
-        //this.toastr.success("Successfully deleted quiz")
         this.router
           .navigateByUrl('/', { skipLocationChange: true })
           .then(() => this.router.navigate([currentUrl]));

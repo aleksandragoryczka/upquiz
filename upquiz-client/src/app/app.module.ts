@@ -36,7 +36,7 @@ import { ResultComponent } from './components/result/result.component';
 import { QuizDetailsComponent } from './components/quiz-details/quiz-details.component';
 import { QuizDetailsQuestionComponent } from './components/quiz-details-question/quiz-details-question.component';
 import { SettingsComponent } from './components/settings/settings.component';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { NewquizComponent } from './components/newquiz/newquiz.component';
 import { CommonModule } from '@angular/common';

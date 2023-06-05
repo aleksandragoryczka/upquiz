@@ -4,9 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
 @Entity
@@ -29,8 +27,6 @@ public class User {
     @Column(name = "password", columnDefinition = "TEXT", nullable = false)
     private String password;
 
-    @Column(name = "photo", nullable = true, columnDefinition = "BYTEA")
-    private byte[] photo;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name="iduser"), inverseJoinColumns = @JoinColumn(name="idrole"))

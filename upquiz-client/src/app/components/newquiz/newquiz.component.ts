@@ -28,7 +28,6 @@ export class NewquizComponent implements OnInit {
     private questionService: QuestionService) {}
 
   ngOnInit(): void {
-    console.log("kod")
     this.userService.user$.subscribe((res) => {
       if(res){
         this.currentUser = res;

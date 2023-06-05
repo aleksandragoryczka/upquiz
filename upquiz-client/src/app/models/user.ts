@@ -7,5 +7,4 @@ export class User {
   email?: string;
   password?: string;
   repeatedPassword?: string;
-  photo?: null;
 }

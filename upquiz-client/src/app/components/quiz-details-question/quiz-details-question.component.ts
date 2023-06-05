@@ -10,12 +10,8 @@ import { QuestionService } from '../../services/question.service';
 export class QuizDetailsQuestionComponent {
   @Input() question: Question;
   @Output() deleteQuestionEvent: EventEmitter<Question> = new EventEmitter<Question>();
-  private questionService: QuestionService;
   
   deleteQuestion(question: Question){
     this.deleteQuestionEvent.emit(question);
-  /*  if(typeof question.idquestion !== 'undefined'){
-      this.questionService.deleteQuestion(question.idquestion).subscribe();
-    } */
   }
 }

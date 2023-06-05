@@ -13,7 +13,7 @@ export class ResultComponent {
   countPercentageResult(): string{
     if(this.result.result && this.maxPoints){
 
-      return (this.result.result / this.maxPoints * 100).toString + "%";
+      return (this.result.result / this.maxPoints * 100).toString() + "%";
     }
     return "-";
   }

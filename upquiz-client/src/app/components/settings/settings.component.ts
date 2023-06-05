@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-settings',
@@ -10,52 +12,50 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class SettingsComponent implements OnInit {
   currentUser: User = new User();
-  selectedPicture: File;
+  settingsForm: FormGroup;
 
   constructor(
     private userService: UserService,
     private route: ActivatedRoute,
-    private router: Router
-  ) {}
-
-  ngOnInit(): void {
-    this.getUser(this.route.snapshot.paramMap.get('id'));
+    private toastr: ToastrService,
+    private formBuilder: FormBuilder
+  ) {
+    this.settingsForm = this.formBuilder.group({
+      firstname: ['', Validators.required],
+      surname: ['', Validators.required],
+      oldPassword: ['', Validators.required],
+      newPassword: ['', Validators.required],
+      confirmPassword: ['', Validators.required],
+    });
   }
 
-  getUser(id): void {
-    this.userService.get(id).subscribe(
-      (data) => {
-        this.currentUser = data;
-        this.currentUser.password = '';
+  ngOnInit(): void {
+    this.userService.user$.subscribe((res) => {
+      if(res){
+        this.currentUser = res;
       }
-    );
+    })
   }
 
   updateUser(): void {
-    this.userService
-      .update(this.currentUser.iduser, this.currentUser)
+    if(this.settingsForm.valid && this.checkPasswords()){
+      const updatedUser = {
+        firstname: this.settingsForm.value.firstName,
+        surname: this.settingsForm.value.surname,
+        oldPassword: this.settingsForm.value.oldPassword,
+        newPassword: this.settingsForm.value.newPassword
+      };
+      this.userService
+      .update(this.currentUser.iduser, updatedUser)
       .subscribe(
-        (response) => {
-          console.log(response);
-        },
-        (error) => {
-          console.log(error);
-        }
+        () => this.toastr.success("User settings updated successfuly.")
       );
-  }
-
-  //TODO: uploading avatar
-  onFileSelected(event: any) : void{
-    this.selectedPicture = event.target.files[0];
-  }
-
-  uploadAvatar():void{
-    if(!this.selectedPicture){
-      return;
-      //TODO: add popup
+    }else{
+      this.toastr.error("You must provide correct credentials!");
     }
-    const formData = new FormData();
-    formData.append('photo', this.selectedPicture);
-    //this.userService.update(this.currentUser.iduser, formData).subscribe()
+  }
+
+  private checkPasswords(): boolean{
+    return this.currentUser.password !== this.currentUser.repeatedPassword ? false : true;
   }
 }

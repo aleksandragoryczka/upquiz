@@ -42,7 +42,6 @@ public class QuizController {
     public Quiz getQuizByIdQuiz(@PathVariable Long idQuiz) {
         Quiz quiz = quizRepository.findById(idQuiz)
                 .orElseThrow(() -> new ResourceNotFoundException("quizRepository", "idQuiz", idQuiz));
-       // System.out.println(quiz.getUser());
         return quiz;
     }
 
@@ -74,7 +73,6 @@ public class QuizController {
                 .orElseThrow(() -> new ResourceNotFoundException("quizRepository", "idQuiz", idQuiz));
         quiz.setQuiztitle(quizUpdated.getQuiztitle());
         quiz.setQuizdescription(quizUpdated.getQuizdescription());
-        quiz.setQuizicon(quizUpdated.getQuizicon());
         return quizRepository.save(quiz);
     }
 

@@ -2,10 +2,7 @@ package up.quiz.upquiz.security.services;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
-
-import javax.swing.plaf.nimbus.State;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -13,7 +10,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import lombok.Data;
 import up.quiz.upquiz.model.User;
 
 

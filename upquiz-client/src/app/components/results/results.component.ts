@@ -5,6 +5,7 @@ import { Student } from 'src/app/models/student';
 import { User } from 'src/app/models/user';
 import { QuizService } from 'src/app/services/quiz.service';
 import { StudentService } from 'src/app/services/student.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-results',
@@ -17,11 +18,19 @@ export class ResultsComponent implements OnInit {
   results = [Student];
   sumOfPoints = 0
 
-  constructor(private studentService: StudentService,
+  constructor(
+    private studentService: StudentService,
     private quizService: QuizService,
-    private route: ActivatedRoute,){}
+    private route: ActivatedRoute,
+    private userService: UserService){}
 
   ngOnInit(): void {
+    this.userService.user$.subscribe((res) => {
+      if(res){
+        this.currentUser = res;
+      }
+    })
+
     const idquiz = this.route.snapshot.paramMap.get('idquiz');
 
     this.getQuizById(idquiz);

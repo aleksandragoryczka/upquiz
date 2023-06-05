@@ -40,11 +40,8 @@ public class StudentController {
     @GetMapping("/checkPin/{pin}")
     public Quiz checkPin(@PathVariable int pin){
         Quiz quiz = quizRepository.findByPin(pin);
-        //System.out.println("quiz ID znalezionego: " + quiz.getIdquiz() );
         if (quiz != null) {
-            System.out.println("quiz ID znalezionego: " + quiz.getIdquiz() );
             if(Timestamp.valueOf(LocalDateTime.now().minus(30, ChronoUnit.MINUTES)).after(quiz.getPingeneratedtime())){
-                System.out.println("pin aktualny" + quiz.getPin() );
                 quiz.setPin(0);
                 quizRepository.save(quiz);
             }else{
