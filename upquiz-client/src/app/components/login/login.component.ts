@@ -1,6 +1,7 @@
 import { Component, } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,8 @@ export class LoginComponent {
 
   constructor(
     private userService: UserService,
-    private router: Router) { }
+    private router: Router,
+    private toastr: ToastrService) { }
 
   login() {
     this.userService.login(this.form).subscribe(
@@ -23,7 +25,11 @@ export class LoginComponent {
             if(res?.iduser){
               this.router.navigate([`/teacher/${res.iduser}`])
             }
-          })
+          })}
+      },
+      (error) => {
+        if(error.status === 401){
+          this.toastr.error("Invalid email or password. Try again!")
         }
       }
     );

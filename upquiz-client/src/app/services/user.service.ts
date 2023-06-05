@@ -12,7 +12,7 @@ const baseUrl = 'http://localhost:8080/api';
   providedIn: 'root',
 })
 export class UserService {
-  private user = new BehaviorSubject<User | undefined>(undefined);
+  private user = new BehaviorSubject<User | null>(null);
   public user$ = this.user.asObservable();
 
   constructor(
@@ -20,7 +20,7 @@ export class UserService {
     private tokenStorageService: TokenStorageService,
     private jwtHelper: JwtHelperService){}
     
-  login(credentials): Observable<boolean> {
+  public login(credentials): Observable<boolean> {
     return this.http.post<AuthenticatedResponse>(`${baseUrl}/auth/signin`, {
       email: credentials.email,
       password: credentials.password
@@ -42,7 +42,7 @@ export class UserService {
     return false;
   }
 
-  register(user): Observable<any> {
+  public register(user): Observable<any> {
     return this.http.post(`${baseUrl}/auth/register`, {
       firstname: user.firstname,
       surname: user.surname,
@@ -51,15 +51,20 @@ export class UserService {
     });
   }
 
-  get(id: number | undefined): Observable<User> {
+  public get(id: number | undefined): Observable<User> {
     return this.http
       .get<User>(`${baseUrl}/users/${id}`)
       .pipe(tap((user: User) => {
         this.user.next(user)}));
   }
 
-  update(id, data): Observable<any> {
+  public update(id, data): Observable<any> {
     return this.http.put(`${baseUrl}/users/${id}`, data);
+  }
+
+  public logout():void{
+    this.tokenStorageService.clearToken();
+    this.clearUser();
   }
 
   private setUser(auth: AuthenticatedResponse): void{
@@ -68,5 +73,8 @@ export class UserService {
       const user = res;
     })
   }
-  
+
+  private clearUser():void{
+    this.user.next(null);
+  }
 }

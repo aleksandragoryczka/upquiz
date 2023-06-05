@@ -12,8 +12,13 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class RegisterComponent implements OnInit{
   user: User = new User();
-  errorMessage = '';
   userForm: FormGroup;
+
+  email = new FormControl('', [Validators.required, Validators.email]);
+  firstname = new FormControl('', [Validators.required]);
+  surname = new FormControl('', [Validators.required]);
+  password = new FormControl('', [Validators.required]);
+  repeatedPassword = new FormControl('', [Validators.required]);
 
   constructor(
     private userService: UserService,
@@ -21,28 +26,30 @@ export class RegisterComponent implements OnInit{
     private toastr: ToastrService,
     private formBuilder: FormBuilder) {}
 
-
   ngOnInit(): void {
     this.userForm = this.formBuilder.group({
-      firstname: ['', [Validators.required, Validators.pattern('^[a-zA-Z]+$')]],
+      firstname: ['', Validators.required],
       surname: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
-      confirmPassword: ['', Validators.required]
+      repeatedPassword: ['', Validators.required]
     });
   }
 
-  get formControls() {
-    return this.userForm.controls;
-  }
-
   createUser(): void {
+    if(!this.checkPasswords()){
+      this.toastr.warning("Provided passwords are not the same");
+      return;
+    }
+
     const new_user = {
       firstname: this.user.firstname,
       surname: this.user.surname,
       email: this.user.email,
       password: this.user.password,
     };
+
+    
 
     this.userService.register(new_user).subscribe(res => {
       if(res){
@@ -52,20 +59,31 @@ export class RegisterComponent implements OnInit{
         this.toastr.error("User with that email already exists!");
       }
     },
-    err => {
-      this.errorMessage = err.error.message;
-    })
+    )
   }
 
-  /*
-  email = new FormControl('', [Validators.required, Validators.email]);
-
-  getErrorMessage() {
-    if (this.email.hasError('required')) {
-      return 'You must enter a value';
+  public getErrorMessage(fieldName: string) : string {
+    switch(fieldName){
+      case 'email':
+        if (this.email.hasError('required')) {
+          return 'You must enter an email';
+        }
+        return this.email.hasError('email') ? 'Invalid email form' : '';
+      case 'firstname':
+        return this.firstname.hasError('required') ? 'You must enter a name' : '';
+      case 'surname':
+        return this.surname.hasError('required') ? 'You must enter a surname' : '';
+      case 'password':
+        return this.password.hasError('required') ? 'You must enter a password' : '';
+      case 'repeatedPassword':
+        return this.password.hasError('required') ? 'You must repeat a password' : '';
+      default:
+        return '';
     }
+  }
 
-    return this.email.hasError('email') ? 'Not a valid email' : '';
-  }*/
+  private checkPasswords(): boolean{
+    return this.user.password !== this.user.repeatedPassword ? false : true;
+  }
 
   }

@@ -5,11 +5,14 @@
         <mat-form-field appearance="fill">
             <mat-label>Enter your email</mat-label>
             <input matInput
+            type="email"
+            required
             [(ngModel)]="form.email">
         </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label>Password</mat-label>
             <input matInput
+            required
             [(ngModel)]="form.password"
             type="password">
         </mat-form-field>

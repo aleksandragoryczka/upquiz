@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { Quiz } from 'src/app/models/quiz';
 import { QuizService } from 'src/app/services/quiz.service';
 import { QuizDetailsQuestionComponent } from '../quiz-details-question/quiz-details-question.component';
@@ -17,24 +17,25 @@ export class QuizDetailsComponent implements OnInit {
   questions: any[] = [Question];
   quiz: Quiz = new Quiz();
   currentUser: User;
+  idquiz: string | null;
 
   constructor(
     private quizService: QuizService,
     private questionService: QuestionService,
     private route: ActivatedRoute,
     private userService: UserService,
-
+    private router: Router
   ) {}
 
   ngOnInit(): void {
-    const idquiz = this.route.snapshot.paramMap.get('idquiz');
+    this.idquiz = this.route.snapshot.paramMap.get('idquiz');
     this.userService.user$.subscribe((res) => {
       if(res){
         this.currentUser = res
       }
       })
-    this.getQuizById(idquiz);
-    this.questionService.getAllQuestionsForQuiz(idquiz).subscribe((data) => {
+    this.getQuizById(this.idquiz);
+    this.questionService.getAllQuestionsForQuiz(this.idquiz).subscribe((data) => {
       this.questions = data;
     });
   }
@@ -49,10 +50,15 @@ export class QuizDetailsComponent implements OnInit {
   }
 
   deleteQuestion(question: Question){ 
-    if(typeof question.idquestion !== 'undefined'){
-      this.questionService.deleteQuestion(question.idquestion).subscribe();
-      location.reload();
-    } 
+    this.questionService.deleteQuestion(question.idquestion).subscribe(
+      () => {
+        let currentUrl = `${this.currentUser.iduser}/quiz-details/${this.idquiz}`;
+        //this.toastr.success("Successfully deleted quiz")
+        this.router
+          .navigateByUrl('/', { skipLocationChange: true })
+          .then(() => this.router.navigate([currentUrl]));
+      }
+    );
   }
 
   addQuestion() {

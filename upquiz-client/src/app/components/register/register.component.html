@@ -4,16 +4,12 @@
     <mat-form-field appearance="fill">
         <mat-label>Name</mat-label>
         <input matInput 
-          formControlName="firstname"  
           id="firstname"        
           type="text"
           required
           [(ngModel)]="user.firstname"
-          name="first_name">
-          <mat-error *ngIf="formControls['firstname'].errors">
-            <span *ngIf="formControls['firstname'].errors['required']">Name is required.</span>
-            <span *ngIf="formControls['firstname'].errors['pattern']">Name should contain only letters.</span>
-          </mat-error>
+          name="firstname">
+          <mat-error *ngIf="firstname.invalid">{{getErrorMessage("firstname")}}</mat-error>
     </mat-form-field>
     <mat-form-field appearance="fill">
         <mat-label>Surname</mat-label>
@@ -24,6 +20,7 @@
           required
           [(ngModel)]="user.surname"
           name="surname">
+          <mat-error *ngIf="surname.invalid">{{getErrorMessage("surname")}}</mat-error>
     </mat-form-field>
     <mat-form-field appearance="fill">
         <mat-label>Enter your email</mat-label>
@@ -35,23 +32,26 @@
           [(ngModel)]="user.email"
           name="email"
           placeholder="dummy@dummy.com">
-      <!--  <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error> -->
+          <mat-error *ngIf="email.invalid">{{getErrorMessage("email")}}</mat-error>
     </mat-form-field>
     <mat-form-field appearance="fill">
         <mat-label>Password</mat-label>
         <input matInput
-          type="password"          
-          class="form-control"
+          type="password"     
           id="password"
           required
           [(ngModel)]="user.password"
           name="pasword">
+          <mat-error *ngIf="password.invalid">{{getErrorMessage("password")}}</mat-error>
     </mat-form-field>
     <mat-form-field appearance="fill">
         <mat-label>Repeat password</mat-label>
-        <input matInput
-          type="password"          
-          required>
+        <input matInput       
+          required
+          type="password"
+          [(ngModel)]="user.repeatedPassword"
+          name="repeatedPassword">
+          <mat-error *ngIf="repeatedPassword.invalid">{{getErrorMessage("repeatedPassword")}}</mat-error>
     </mat-form-field>
     <button mat-raised-button (click)="createUser()">Register</button>
 </div>

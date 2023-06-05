@@ -28,7 +28,6 @@ import up.quiz.upquiz.security.jwt.JwtUtils;
 import up.quiz.upquiz.security.payloads.request.LoginRequest;
 import up.quiz.upquiz.security.payloads.request.RegisterRequest;
 import up.quiz.upquiz.security.payloads.response.JwtResponse;
-import up.quiz.upquiz.security.payloads.response.MessageResponse;
 import up.quiz.upquiz.security.services.UserDetailsImpl;
 
 @CrossOrigin(origins = "http://localhost:4200")
@@ -59,13 +58,16 @@ public class AuthController {
         String jwt = jwtUtils.geenrateJwtToken(authentication);
 
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+        if(userDetails.equals(null)){
+            return ResponseEntity.ok(false);
+        }
         List<String> roles = userDetails.getAuthorities().stream().map(item -> item.getAuthority()).collect(Collectors.toList());
 
         return ResponseEntity.ok(new JwtResponse(jwt, userDetails.getId(), userDetails.getUsername(), roles));
     }
 
     @PostMapping("/register")
-    public ResponseEntity<?> regiserUser(@Valid @RequestBody RegisterRequest registerRequest){
+    public ResponseEntity<?> registerUser(@Valid @RequestBody RegisterRequest registerRequest){
         if(userRepository.existsByEmail(registerRequest.getEmail())){
             return ResponseEntity.ok(false);
         }

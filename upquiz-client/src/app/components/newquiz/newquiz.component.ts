@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { QuizDetailsQuestionComponent } from '../quiz-details-question/quiz-details-question.component';
 import { User } from 'src/app/models/user';
 import { Quiz } from 'src/app/models/quiz';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { QuizService } from 'src/app/services/quiz.service';
 import { QuestionService } from '../../services/question.service';
@@ -21,13 +21,19 @@ export class NewquizComponent implements OnInit {
   quiz: Quiz = new Quiz();
   
 
-  constructor(private route: ActivatedRoute,
+  constructor(
+    private router: Router,
     private userService: UserService, 
     private quizService: QuizService, 
     private questionService: QuestionService) {}
 
   ngOnInit(): void {
-    this.getUser(this.route.snapshot.paramMap.get('id'));
+    console.log("kod")
+    this.userService.user$.subscribe((res) => {
+      if(res){
+        this.currentUser = res;
+      }
+    })
   }
 
   addQuestion(): void{
@@ -45,12 +51,17 @@ export class NewquizComponent implements OnInit {
       (res) => {
         let questionsAddedCounter = this.saveQuestion(res.idquiz);
         this.updateSumOfPoints(res.idquiz, questionsAddedCounter);
+
+        let currentUrl = `/teacher/${this.currentUser.iduser}`; //TODO: replace with userid
+        this.router
+          .navigateByUrl('/', { skipLocationChange: true })
+          .then(() => this.router.navigate([currentUrl]));
       }
     );    
   }
 
   private updateSumOfPoints(quizId: number, questionsAddedCounter: number): void{
-    this.quizService.updateSumOfPointsForQuiz(quizId, questionsAddedCounter).subscribe((res) => console.log(res));
+    this.quizService.updateSumOfPointsForQuiz(quizId, questionsAddedCounter).subscribe();
   }
 
   private saveQuestion(quizId: number): number{
@@ -65,18 +76,8 @@ export class NewquizComponent implements OnInit {
         correctanswer: question.correctanswer,
       };
       questionCounter += 1;
-      console.log("qc: " + questionCounter);
       this.questionService.addQuestionToQuiz(quizId, newQuestion).subscribe();
     }
     return questionCounter;
   }
-
-  private getUser(id): void {
-    this.userService.get(id).subscribe(
-      (data) => {
-        this.currentUser = data;
-        this.currentUser.password = '';
-      },
-    );
-}
 }

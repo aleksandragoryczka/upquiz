@@ -22,4 +22,8 @@ export class TeacherViewComponent implements OnInit {
       }
     })
   }
+
+  public logout():void{
+    return this.userService.logout();
+  }
 }
